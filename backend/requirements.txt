@@ -1,0 +1,8 @@
+flask
+flask-cors
+gunicorn
+numpy
+scipy
+pandas
+oracledb
+requests
