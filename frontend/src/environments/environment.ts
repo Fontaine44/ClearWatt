@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://clearwatt.onrender.com',
+    apiUrl: 'https://clearwatt-api.onrender.com',
 };
