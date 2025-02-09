@@ -13,6 +13,10 @@ export const routes: Routes = [
     loadComponent: () => import('./components/marketplace/marketplace.component').then(m => m.MarketplaceComponent)
   },
   {
+    path: 'login',
+    loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent)
+  },
+  {
     path: '**',
     redirectTo: '',
   }

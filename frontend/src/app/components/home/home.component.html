@@ -1,9 +1,14 @@
-<div class="flex col">
+<app-navbar></app-navbar>
+<div class="home flex col">
   <!-- Homepage -->
-  <div class="home__background">
-    <h1 class="text-center">ClearWatt</h1>
-    <p>This is the ClearWatt app</p>
-    <p>API status: {{status}}</p>
+  <div class="home__start home__background">
+    <span class="home__start-title">ClearWatt</span>
+    
+    <span class="home__start-subtitle">The Next Step in Quebec's Hydrogen</span>
+
+    <button class="btn btn-primary btn-login">
+      <a class="nav-link" routerLink="/marketplace">Go To Marketplace</a>
+    </button>
   </div>
 
   <!-- Potential -->
@@ -19,7 +24,7 @@
   </div>
 
   <!-- Producer -->
-  <div class="home__page">
+  <div id="producer" class="home__page">
     <div class="home__half-image">
       <img src="/mountain_rocky.jpg" alt="Mountain Rocky Image">
     </div>
@@ -31,7 +36,7 @@
   </div>
 
   <!-- Consumer -->
-  <div class="home__page">
+  <div id="consumer" class="home__page">
     <div class="home__half-image">
       <img src="/mountain_side.jpg" alt="Mountain Side Image">
     </div>
@@ -43,7 +48,7 @@
   </div>
 
   <!-- About Us -->
-  <div class="home__page">
+  <div id="about-us" class="home__page">
     <div class="home__half-content home__about-us">
       <h2 class="text-center">About Us</h2>
       <p>Hydrogen is set to play a pivotal role in the global energy transition, with the potential to abate 80 gigatons of CO₂ emissions by 2050. As an energy storage medium and decarbonization tool for industries like steel, aviation, and heavy transport, hydrogen bridges renewable energy with hard-to-abate sectors. Achieving these ambitions will require over $300 billion in investments by 2030.</p>

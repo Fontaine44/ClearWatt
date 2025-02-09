@@ -1,4 +1,11 @@
-$primary: #ED1B2F;
+$primary: #535353;
+$btn-border-radius: 0;
+$btn-padding-y: 8px;
+$btn-padding-x: 16px;
+
+:root {
+    --bs-nav-link-font-weight: 500;
+}
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "../node_modules/bootstrap-icons/font/bootstrap-icons";

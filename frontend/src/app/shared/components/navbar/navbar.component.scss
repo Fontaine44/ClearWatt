@@ -7,3 +7,26 @@
         z-index: 1000;
     }
 }
+
+.navbar-nav {
+    justify-content: space-evenly;
+    width: 60%;
+}
+
+.nav-link {
+    color: #000;
+
+    &:hover {
+        color: var(--bs-primary);
+    }
+}
+
+.btn {
+    &-login {
+        width: 225px;
+
+        a {
+            color: #FFF;
+        }
+    }
+}

@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	height: 100vh;
 }
 ol, ul {
 	list-style: none;
@@ -47,12 +48,10 @@ table {
 	border-spacing: 0;
 }
 
-body {
-	height: 100vh;
-}
-
+// Custom styles
 * {
 	font-family: "Poppins", serif;
+	font-weight: 500;
 }
 
 .poppins-thin {

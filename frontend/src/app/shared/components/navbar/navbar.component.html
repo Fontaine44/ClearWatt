@@ -4,14 +4,29 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto ms-5 mb-2 mb-lg-0">
+
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+          <a class="nav-link" routerLink="/marketplace">Marketplace</a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" routerLink="/marketplace" routerLinkActive="active">Marketplace</a>
+          <a class="nav-link" routerLink="" fragment="producer">Producer</a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="" fragment="consumer">Consumer</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="" fragment="about-us">About Us</a>
+        </li>
+
+
       </ul>
+      <button class="btn btn-primary btn-login">
+        <a class="nav-link" routerLink="/login">Login/Register</a>
+      </button>
     </div>
   </div>
 </nav>
