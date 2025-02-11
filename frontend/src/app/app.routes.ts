@@ -13,6 +13,10 @@ export const routes: Routes = [
     loadComponent: () => import('./components/marketplace/marketplace.component').then(m => m.MarketplaceComponent)
   },
   {
+    path: 'map',
+    loadComponent: () => import('./components/map/map.component').then(m => m.MapComponent)
+  },
+  {
     path: 'login',
     loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent)
   },

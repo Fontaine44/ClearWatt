@@ -1,0 +1,31 @@
+<div class="map">
+    <h2 class="text-center">Interactive Hydrogen Map</h2>
+    <div class="map__container">
+        <div class="btn-group w-100" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="viewMode" id="mapView" autocomplete="off" checked (change)="toggleListMode(false)">
+            <label class="btn btn-outline-primary" for="mapView">Map</label>
+          
+            <input type="radio" class="btn-check" name="viewMode" id="listView" autocomplete="off" (change)="toggleListMode(true)">
+            <label class="btn btn-outline-primary" for="listView">List</label>
+        </div>
+
+        <div class="map__frame">
+            @if (listMode) {
+                <div class="map__list">
+                    @for (marker of markers; track marker.id) {
+                        <div class="map__list__item" [ngClass]="{'map__list__item--dark': marker.id % 2 === 1}">
+                            <img [src]="marker.icon" alt="Company Image">
+                            <div class="map__list__item__content">
+                                <div class="map__list__item__title">{{ marker.name }}</div>
+                                <div class="map__list__item__description">{{ marker.description }}</div>
+                                <a [href]="marker.website" target="_blank">{{ marker.website }}</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            
+            <div id="map" [hidden]="listMode"></div>
+        </div>
+    </div>
+</div>
