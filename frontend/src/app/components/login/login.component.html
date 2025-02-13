@@ -1,4 +1,29 @@
-<div class="p-2">
-  <h1 class="text-center">Login</h1>
-  <p>Wow empty</p>
+<div class="login">
+  <div class="login__logo" routerLink="/">
+    LOGO ClearWatt 
+  </div>
+
+  <div class="login__container">
+    <h1>Login</h1>
+
+    <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      
+      <div class="input-group has-validation">
+        <input type="email" class="form-control" formControlName="email" placeholder="Email" />
+      </div>
+
+      <div class="input-group">
+        <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+    <div class="login__footer">
+      <div>Forgot <a routerLink="/login">Password?</a></div>
+      <div>Don't have an account? <a routerLink="/login">Register</a></div>
+    </div>
+
+    <div>Use DEMO profile: <a href="javascript:void(0);" (click)="loginConsumer()">Consumer</a> or <a href="javascript:void(0);" (click)="loginProducer()">Producer</a></div>
+  </div>
 </div>
