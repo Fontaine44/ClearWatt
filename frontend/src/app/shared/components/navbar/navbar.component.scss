@@ -14,11 +14,15 @@
 }
 
 .nav-link {
-    color: #000;
+    color: #FFF;
 
     &:hover {
         color: var(--bs-primary);
     }
+}
+
+.nav-item {
+    color: #FFF;
 }
 
 .btn {

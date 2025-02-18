@@ -1,14 +1,17 @@
 .home {
+
     &__start {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 20px;
+        color: #FFF;
     }
 
     &__start-title {
         font-size: 50px;
+        font-weight: 700;
     }
 
     &__start-subtitle {
@@ -16,7 +19,12 @@
     }
 
     &__background {
-        background-image: url('/mountain.jpg');
+        background-image:
+            linear-gradient(
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.5)
+            ),
+            url('/home.png');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;

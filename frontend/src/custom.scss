@@ -1,4 +1,4 @@
-$primary: #535353;
+$primary: #426b1f;
 $secondary: #cecece;
 $btn-border-radius: 0;
 $btn-padding-y: 8px;
@@ -10,13 +10,3 @@ $btn-padding-x: 16px;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "../node_modules/bootstrap-icons/font/bootstrap-icons";
-
-$mynewcolor: #FFF;
-
-.btn-primary,
-.btn-primary:hover,
-.btn-primary:active,
-.btn-primary:visited,
-.btn-primary:focus {
-    color: #FFF;
-}
