@@ -1,5 +1,5 @@
 <div class="map">
-    <h2 class="text-center">Interactive Hydrogen Map</h2>
+    <h1 class="text-center">Interactive Hydrogen Map</h1>
     <div class="map__container">
         <div class="btn-group w-100" role="group" aria-label="Basic radio toggle button group">
             <input type="radio" class="btn-check" name="viewMode" id="mapView" autocomplete="off" checked (change)="toggleListMode(false)">
@@ -17,8 +17,8 @@
                             <img [src]="marker.icon" alt="Company Image">
                             <div class="map__list__item__content">
                                 <div class="map__list__item__title">{{ marker.name }}</div>
-                                <div class="map__list__item__description">{{ marker.description }}</div>
-                                <a [href]="marker.website" target="_blank">{{ marker.website }}</a>
+                                <div>{{ marker.description }}</div>
+                                <a [href]="marker.website" target="_blank">Website</a>
                             </div>
                         </div>
                     }

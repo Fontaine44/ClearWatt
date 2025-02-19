@@ -1,61 +1,176 @@
 <app-navbar></app-navbar>
-<div class="home flex col">
+<div class="home">
   <!-- Homepage -->
   <div class="home__start home__background">
-    <span class="home__start-title">ClearWatt</span>
-    
-    <span class="home__start-subtitle">The Next Step in Quebec's Hydrogen</span>
+    <div class="home__start-content">
+      <span class="home__start-title">ClearWatt</span>
+      
+      <span class="home__start-subtitle">The Next Step in Quebec's Hydrogen</span>
 
-    <button class="btn btn-primary btn-login">
-      <a class="nav-link" routerLink="/marketplace">Go To Marketplace</a>
-    </button>
+      <button class="btn btn-primary btn-login">
+        <a class="nav-link" routerLink="/marketplace">Go To Marketplace</a>
+      </button>
+    </div>
   </div>
 
   <!-- Potential -->
   <div class="home__page">
     <div class="home__half-content">
-      <h2 class="text-center">Green Hydrogen's Potential in Quebec</h2>
-      <p>Hydrogen is set to play a pivotal role in the global energy transition, with the potential to abate 80 gigatons of CO₂ emissions by 2050. As an energy storage medium and decarbonization tool for industries like steel, aviation, and heavy transport, hydrogen bridges renewable energy with hard-to-abate sectors. Achieving these ambitions will require over $300 billion in investments by 2030.</p>
+      <div class="home__logo">
+       LOGO ClearWatt
+      </div>
+
+      <div class="text-center">
+        <h1>Green Hydrogen's Potential in Quebec</h1><br>
+
+        <p>
+          Hydrogen is set to play a pivotal role in the global energy transition, with the potential to abate <b>80 gigatons of CO₂ emissions by 2050.</b> As an energy storage medium and decarbonization tool for industries like steel, aviation, and heavy transport, hydrogen bridges renewable energy with hard-to-abate sectors. Achieving these ambitions will require over <b>$300 billion in investments by 2030.</b>
+        </p>
+
+        <p>
+          Quebec, with its <b>32 TWh of renewable energy surplus annually,</b> is uniquely positioned to become a hub for green hydrogen production, leveraging its abundant hydropower and industrial base.
+        </p>
+
+        <p>
+          But how can we efficiently connect investors, producers, and clients to unlock this potential and drive sustainable growth? 
+          <br>- that's where ClearWatt comes in.
+        </p>
+
+        <button class="btn btn-primary">
+          <a class="nav-link" routerLink="/map">View Hydrogen Map</a>
+        </button>
+      </div>
     </div>
 
     <div class="home__half-image">
-      <img src="/flag.png" alt="Quebec Flag">
+      <img src="/qc-city.jpg" alt="Quebec Flag">
     </div>
   </div>
 
   <!-- Producer -->
   <div id="producer" class="home__page">
     <div class="home__half-image">
-      <img src="/mountain_rocky.jpg" alt="Mountain Rocky Image">
+      <img src="/producer.jpg" alt="Producer Image">
     </div>
 
     <div class="home__half-content home__producer">
-      <h2 class="text-center">Producer</h2>
-      <p>Hydrogen is set to play a pivotal role in the global energy transition, with the potential to abate 80 gigatons of CO₂ emissions by 2050. As an energy storage medium and decarbonization tool for industries like steel, aviation, and heavy transport, hydrogen bridges renewable energy with hard-to-abate sectors. Achieving these ambitions will require over $300 billion in investments by 2030.</p>
+      <div class="text-center">
+        <h1>Producer</h1><br>
+        
+        <p class="text-start">
+          Are you a current or future green hydrogen producer looking to:
+        </p>
+        <ul class="text-start">
+            <li>Sell your merchandise with no intermediary?</li>
+            <li>Secure long-term purchase agreements with reliable buyers?</li>
+            <li>Optimize your production strategy based on market demand and energy availability?</li>
+            <li>Connect with industries transitioning to green hydrogen for sustainability goals?</li>
+        </ul>
+        <p class="text-start text-primary">
+          Join ClearWatt to streamline your sales and expand your market reach!
+        </p>
+
+        <button class="btn btn-secondary">
+          <a class="nav-link" routerLink="/marketplace">Get started!</a>
+        </button>
+      </div>
     </div>
   </div>
 
   <!-- Consumer -->
   <div id="consumer" class="home__page">
-    <div class="home__half-image">
-      <img src="/mountain_side.jpg" alt="Mountain Side Image">
+    <div class="home__half-content home__consumer">
+      <div class="text-center">
+        <h1>Consumer</h1><br>
+        
+        <p class="text-start">
+          Are you a current or potential green hydrogen consumer looking to:
+        </p>
+        <ul class="text-start">
+            <li>Secure a reliable supply of green hydrogen at competitive prices?</li>
+            <li>Connect directly with producers without intermediaries?</li>
+            <li>Find suppliers that meet your specific volume, pricing, and location needs?</li>
+            <li>Plan your clean energy transition with AI-driven demand forecasting?</li>
+            <li>Quantify your CO₂ savings and sustainability impact?</li>
+        </ul>
+        <p class="text-start text-primary">
+          Join ClearWatt to simplify your hydrogen procurement and accelerate your transition to clean energy!
+        </p>
+
+        <button class="btn btn-secondary">
+          <a class="nav-link" routerLink="/marketplace">Get started!</a>
+        </button>
+      </div>
     </div>
 
-    <div class="home__half-content home__consumer">
-      <h2 class="text-center">Consumer</h2>
-      <p>Hydrogen is set to play a pivotal role in the global energy transition, with the potential to abate 80 gigatons of CO₂ emissions by 2050. As an energy storage medium and decarbonization tool for industries like steel, aviation, and heavy transport, hydrogen bridges renewable energy with hard-to-abate sectors. Achieving these ambitions will require over $300 billion in investments by 2030.</p>
+    <div class="home__half-image">
+      <img src="/consumer.jpg" alt="Consumer Image">
     </div>
   </div>
 
   <!-- About Us -->
   <div id="about-us" class="home__page">
-    <div class="home__half-content home__about-us">
-      <h2 class="text-center">About Us</h2>
-      <p>Hydrogen is set to play a pivotal role in the global energy transition, with the potential to abate 80 gigatons of CO₂ emissions by 2050. As an energy storage medium and decarbonization tool for industries like steel, aviation, and heavy transport, hydrogen bridges renewable energy with hard-to-abate sectors. Achieving these ambitions will require over $300 billion in investments by 2030.</p>
-    </div>
 
     <div class="home__half-image">
-      <img src="/mountain_rocky.jpg" alt="Mountain Rocky Image">
+      <img src="/team.jpg" alt="Team Photo">
+    </div>
+
+    <div class="home__half-content home__about-us">
+      <h1>About Us</h1>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-6 col-xl-4 p-4 home__about-us-person">
+            <img src="/flag.jpg" alt="Person 1">
+            <h5>Person 1</h5>
+            <div>
+              Info about Person 1
+            </div>
+          </div>
+          <div class="col-6 col-xl-4 p-4 home__about-us-person">
+            <img src="/flag.jpg" alt="Person 2">
+            <h5>Person 1</h5>
+            <div>
+              Info about Person 2
+            </div>
+          </div>
+          <div class="col-6 col-xl-4 p-4 home__about-us-person">
+            <img src="/flag.jpg" alt="Person 3">
+            <h5>Person 1</h5>
+            <div>
+              Info about Person 3
+            </div>
+          </div>
+          <div class="col-6 p-4 home__about-us-person">
+            <img src="/flag.jpg" alt="Person 4">
+            <h5>Person 1</h5>
+            <div>
+              Info about Person 4
+            </div>
+          </div>
+          <div class="col-6 p-4 home__about-us-person">
+            <img src="/flag.jpg" alt="Person 5">
+            <h5>Person 1</h5>
+            <div>
+              Info about Person 5
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="home__footer">
+    <div class="home__footer-logo">
+      LOGO ClearWatt
+    </div>
+
+    <div class="home__footer-links">
+      <a class="nav-link" routerLink="/marketplace">Marketplace</a>
+      <a class="nav-link" routerLink="" fragment="producer">Producer</a>
+      <a class="nav-link" routerLink="" fragment="consumer">Consumer</a>
     </div>
   </div>
 </div>

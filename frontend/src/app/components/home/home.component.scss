@@ -1,12 +1,18 @@
 .home {
-
     &__start {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__start-content {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin-bottom: calc(100vh * 0.2);
         gap: 20px;
         color: #FFF;
+        text-align: center;
     }
 
     &__start-title {
@@ -21,10 +27,10 @@
     &__background {
         background-image:
             linear-gradient(
-                rgba(0, 0, 0, 0.5),
-                rgba(0, 0, 0, 0.5)
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0.2)
             ),
-            url('/home.png');
+            url('/flag.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -33,15 +39,15 @@
 
     &__page {
         display: flex;
-        height: 100vh;
+        min-height: 100vh;
     }
 
     &__half-content {
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
         flex-direction: column;
-        padding: 20px;
+        padding: 36px;
         width: 50%;
     }
 
@@ -60,13 +66,68 @@
     }
 
     &__producer {
-        background-color: #000000;
-        color: white;
-        text-align: center;
+        background-color: #000;
+        color: #FFF;
+
+        ul {
+            list-style: unset;
+        }
     }
 
     &__consumer {
-        flex-direction: column;
-        text-align: center;
+        ul {
+            list-style: unset;
+        }
+    }
+
+    &__about-us {
+        background-color: #000;
+        color: #FFF;
+
+        &-person {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            img {
+                width: 175px;
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+
+    &__logo {
+        align-self: start;
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--bs-primary);
+    }
+
+    &__footer {
+        display: flex;
+        background-color: var(--bs-secondary);
+        color: #FFF;
+        padding: 20px;
+        justify-content: space-between;
+
+        &-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--bs-primary);
+        }
+
+        &-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link:hover {
+            color: var(--bs-primary);
+        }
     }
 }

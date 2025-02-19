@@ -83,11 +83,9 @@ export class MapComponent implements AfterViewInit {
     for (const marker of this.markers) {
       const popup = L.popup({
         className: 'map__popup',
-        content: `<span class="map__popup-title">${marker.name}</span>
-          <br/>
-          ${marker.description}
-          <br/>
-          <a href="${marker.website}" target="_blank">${marker.website}</a>`
+        content: `<div class="poppins-bold fs-6">${marker.name}</div>
+          <div class="poppins-medium my-1">${marker.description}</div>
+          <a class="poppins-medium" href="${marker.website}" target="_blank">Website</a>`
       });
 
       L.marker(

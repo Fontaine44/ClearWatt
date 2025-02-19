@@ -3,10 +3,16 @@
     flex-direction: column;
     height: 100vh;
     padding: 10px;
-    background-image: url('/mountain.jpg');
+    background-image: url('/flag.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    h1 {
+        color: #FFF;
+        font-size: 36px;
+        // font-weight: 700;
+    }
 
     &__container {
         flex: 1;
@@ -14,6 +20,15 @@
         flex-direction: column;
         margin: 16px;
         overflow: hidden;
+
+        .btn-group {
+            background-color: #FFF;
+            border-radius: 0px;
+
+            .btn {
+                border-radius: 0px;
+            }
+        }
     }
 
     &__frame {
@@ -28,13 +43,6 @@
         height: 100%;
     }
 
-    ::ng-deep &__popup {
-        &-title {
-            font-weight: 700;
-            font-size: 16px;
-        }
-    }
-
     &__list {
         display: flex;
         flex-direction: column;
@@ -44,19 +52,16 @@
             align-items: center;
             gap: 16px;
             padding: 10px;
+            height: 125px;
+            font-size: 14px;
+            
 
             &--dark {
-                background-color: var(--bs-secondary);
+                background-color: #d3d3d3;
             }
     
             img {
-                width: 60px;
-                height: 100%;
-            }
-
-            a {
-                color: var(--bs-body-color);
-                font-size: 14px;
+                width: 75px;
             }
 
             &__content {
@@ -68,10 +73,6 @@
             &__title {
                 font-weight: 700;
                 font-size: 16px;
-            }
-
-            &__description {
-                font-size: 14px;
             }
         }
     }
