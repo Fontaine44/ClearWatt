@@ -1,5 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from '@env/environment';
+import { AuthService } from '@shared/services/auth/auth.service';
+import { HttpService } from '@shared/services/http/http.service';
 import * as L from 'leaflet';
 
 @Component({
@@ -9,51 +13,59 @@ import * as L from 'leaflet';
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
 })
-export class MapComponent implements AfterViewInit {
+export class MapComponent implements OnInit {
   map?: L.Map;
-  listMode = false;
-  markers: Marker[] = [
-    {
-      id: 0,
-      location: [45.47884, -73.59793],
-      icon: 'fuel_cell.png',
-      name: 'Fuel Cell Energy',
-      description: 'FuelCell Energy is enabling a world empowered by clean energy with a platform based on fuel cell technology.',
-      website: 'https://fuelcellenergy.com'
-    },
-    {
-      id: 1,
-      location: [45.495028, -73.557479],
-      icon: 'marker.png',
-      name: 'Red Hydrogen',
-      description: 'Red Hydrogen is a company that produces hydrogen fuel cells for a variety of applications.',
-      website: 'https://www.greencars.com/greencars-101/red-hydrogen-how-it-works'
-    },
-    {
-      id: 2,
-      location: [45.4300, -73.59793],
-      icon: 'fuel_cell.png',
-      name: 'Fuel Cell Energy',
-      description: 'FuelCell Energy is enabling a world empowered by clean energy with a platform based on fuel cell technology.',
-      website: 'https://fuelcellenergy.com'
-    },
-    {
-      id: 3,
-      location: [45.46000, -73.569279],
-      icon: 'marker.png',
-      name: 'Red Hydrogen',
-      description: 'Red Hydrogen is a company that produces hydrogen fuel cells for a variety of applications.',
-      website: 'https://www.greencars.com/greencars-101/red-hydrogen-how-it-works'
-    },
-  ];
+  producers: Producer[] = [];
+  markers: L.Marker[] = [];
+  popups: L.Popup[] = [];
 
-  ngAfterViewInit(): void {
-    this.initMap();
-  }
+  constructor(
+    readonly _httpService: HttpService,
+    readonly _authService: AuthService,
+    readonly _router: Router,
+  ) { }
 
-  public toggleListMode(listMode: boolean) {
-    this.listMode = listMode;
-    if (!listMode) this.initMap()
+  ngOnInit(): void {
+    // If the user is not logged in, log in as a consumer demo
+    if (!this._authService.isLoggedIn()) {
+      this._authService.loginConsumerDemo();
+    }
+
+    // Get producers from the API
+    this._httpService.get(`${environment.apiUrl}/producer`).subscribe({
+      next: (response) => {
+        this.producers = response.producers;
+        this.markers = this.producers.map(producer => {
+          return L.marker([producer.latitude, producer.longitude],
+            {
+              title: producer.name,
+              alt: producer.name,
+              icon: L.icon({
+                iconUrl: producer.logo_url,
+                iconSize: [36, 36],
+                iconAnchor: [18, 0],
+              })
+            }
+          );
+        });
+
+        this.popups = this.producers.map(producer => {
+          return L.popup({
+    
+            className: 'map__popup',
+            content: `<div class="poppins-bold fs-6">${producer.name}</div>
+              <div class="poppins-medium my-1">${producer.description}</div>
+              <a class="poppins-medium" href="google.com" target="_blank">Website</a>`
+          });
+        });
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        this.initMap();
+      }
+    });
   }
 
   private initMap(): void {
@@ -70,7 +82,7 @@ export class MapComponent implements AfterViewInit {
 
     tiles.addTo(this.map);
 
-    const icons = { // you can replace with your exact image paths
+    const icons = {
       iconUrl: 'marker.png',
       iconRetinaUrl: 'marker.png',
       iconSize: [36, 36],
@@ -80,27 +92,27 @@ export class MapComponent implements AfterViewInit {
     }
     L.Icon.Default.mergeOptions(icons);
 
-    for (const marker of this.markers) {
-      const popup = L.popup({
-        className: 'map__popup',
-        content: `<div class="poppins-bold fs-6">${marker.name}</div>
-          <div class="poppins-medium my-1">${marker.description}</div>
-          <a class="poppins-medium" href="${marker.website}" target="_blank">Website</a>`
-      });
+    for (let i = 0; i < this.markers.length; i++) {
+      const marker = this.markers[i];
+      const popup = this.popups[i];
 
-      L.marker(
-        marker.location, {
-          title: marker.name,
-          alt: marker.name,
-          icon: L.icon({
-            iconUrl: marker.icon,
-            iconSize: [36, 36],
-            iconAnchor: [18, 0],
-          })
-      }).addTo(this.map)
-      .bindPopup(
-        popup
-      );
+      marker.addTo(this.map).bindPopup(popup);
+    }
+
+    // If the user has clicked on a producer in the marketplace, select the marker
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    if (id) {
+      this.selectMarkerById(id);
+    }
+  }
+
+  selectMarkerById(id: string): void {
+    const markerId = parseInt(id) - 1;
+    if (markerId < this.markers.length && markerId >= 0) {
+      const marker = this.markers[markerId];
+      this.map?.setView(marker.getLatLng(), 12);
+      marker.openPopup();
     }
   }
 }

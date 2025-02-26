@@ -21,7 +21,7 @@
 
     <div class="marketplace__list">
       @for (producer of filteredProducers; track producer.id) {
-        <div class="marketplace__list__item">
+        <div class="marketplace__list__item" (click)="onProducerClick(producer.id)">
 
           <div class="marketplace__list__item__image">
             <img [src]="producer.logo_url" alt="Producer image"> 
@@ -63,5 +63,4 @@
       }
     </div>
   </div>
-
 </div>

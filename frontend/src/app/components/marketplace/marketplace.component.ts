@@ -15,7 +15,6 @@ import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
   styleUrl: './marketplace.component.scss'
 })
 export class MarketplaceComponent implements OnInit {
-
   producers: Producer[] = [];
   filteredProducers: Producer[] = [];
   searchTerm: string = '';
@@ -67,5 +66,9 @@ export class MarketplaceComponent implements OnInit {
         searchTerms.some(term => producer.name.toLowerCase().includes(term))
       );
     }
+  }
+
+  onProducerClick(id: number) {
+    this._router.navigate(['/map'], { queryParams: { id: id } });
   }
 }
