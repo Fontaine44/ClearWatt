@@ -1,10 +1,67 @@
-<app-market-nav></app-market-nav>
 <div class="marketplace">
-  <div>
-    content 1
+  <div class="marketplace__header">
+      
+    <h1>Marketplace</h1>
+    <div class="marketplace__search">
+      <input
+        type="search"
+        class="form-control"
+        placeholder="Search producer..."
+        maxlength="50"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchChange($event)"
+      />
+    </div>
   </div>
-  <div>
-    content 2
+
+  <div class="marketplace__producers">
+    <div class="marketplace__filters">
+      Filters will go here
+    </div>
+
+    <div class="marketplace__list">
+      @for (producer of filteredProducers; track producer.id) {
+        <div class="marketplace__list__item">
+
+          <div class="marketplace__list__item__image">
+            <img [src]="producer.logo_url" alt="Producer image"> 
+          </div>
+
+          <div>
+            <h2>
+              {{ producer.name }}
+            </h2>
+            <div>
+              100km
+            </div>
+          </div>
+
+          <div class="marketplace__list__item__info ms-auto">
+            <div class="marketplace__list__item__trapezoid">
+              <div class="marketplace__list__item__price">
+                <div>
+                  {{ producer.dollars_per_kg }} $/kg
+                </div>
+                <div>
+                  Available volume: {{ producer.available_kg }} kg
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      } @empty {
+        @if (searchTerm === '') {
+          <div class="marketplace__list__item">
+            <h2>Loading...</h2>
+          </div>
+        } @else {
+          <div class="marketplace__list__item">
+            <h2>No producers found</h2>
+          </div>
+        }
+      }
+    </div>
   </div>
 
 </div>

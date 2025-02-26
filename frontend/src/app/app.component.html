@@ -1,2 +1,5 @@
+@if (_router.url.startsWith('/marketplace') || _router.url.startsWith('/map')) {
+    <app-market-nav></app-market-nav>
+}
 <router-outlet>
 <app-alert></app-alert>

@@ -19,6 +19,7 @@ def get_producers():
                 'contract_type': producer.contract_type,
                 'contract_duration': producer.contract_duration,
                 'dollars_per_kg': producer.dollars_per_kg,
+                'available_kg': producer.available_kg,
                 'logo_url': producer.logo_url
             }
             for producer in producers
