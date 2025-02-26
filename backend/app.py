@@ -16,4 +16,8 @@ def create_app():
     from blueprints.producer import producer
     app.register_blueprint(producer)
 
+    @app.route('/')
+    def health():
+        return ''
+
     return app
