@@ -1,6 +1,6 @@
 <div class="login">
   <div class="login__logo" routerLink="/">
-    <app-logo [size]="24" [fontSize]="24"></app-logo>
+    <app-logo [fontSize]="24"></app-logo>
   </div>
 
   <div class="login__container">
@@ -24,6 +24,6 @@
       <div>Don't have an account? <a routerLink="/login">Register</a></div>
     </div>
 
-    <div>Use DEMO profile: <a href="javascript:void(0);" (click)="loginConsumer()">Consumer</a> or <a href="javascript:void(0);" (click)="loginProducer()">Producer</a></div>
+    <div>Use DEMO profile: <a href="javascript:void(0);" (click)="this._authService.loginConsumerDemo()">Consumer</a> or <a href="javascript:void(0);" (click)="this._authService.loginProducerDemo()">Producer</a></div>
   </div>
 </div>

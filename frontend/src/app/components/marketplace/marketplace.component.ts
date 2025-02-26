@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { HttpService } from '@shared/services/http.service';
-import { environment } from '@env/environment';
+import { HttpService } from '@shared/services/http/http.service';
+import { AuthService } from '@shared/services/auth/auth.service';
+import { MarketNavComponent } from '../market-nav/market-nav.component';
 
 @Component({
   selector: 'app-marketplace',
   standalone: true,
-  imports: [RouterLink],
+  imports: [MarketNavComponent],
   templateUrl: './marketplace.component.html',
   styleUrl: './marketplace.component.scss'
 })
@@ -15,11 +15,15 @@ export class MarketplaceComponent implements OnInit {
 
   constructor(
     readonly _httpService: HttpService,
+    readonly _authService: AuthService,
   ) { }
 
   ngOnInit(): void {
-    this._httpService.get(`${environment.apiUrl}/producer`).subscribe((response) => {
-      console.log(response);
-    });
+    if (!this._authService.isLoggedIn()) {
+      this._authService.loginConsumerDemo();
+    }
+    // this._httpService.get(`${environment.apiUrl}/producer`).subscribe((response) => {
+    //   console.log(response);
+    // });
   }
 }

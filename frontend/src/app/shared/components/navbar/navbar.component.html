@@ -26,10 +26,20 @@
 
       <div class="nav-item">
         @if (isLoggedIn) {
-          <span class="me-2 user-select-none">Hi, {{ profile.name }} ({{ profile.role}})</span>
-          <button class="btn btn-primary" (click)="logout()">
-            Logout
-          </button>
+          <div class="nav-item dropdown mx-2">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i><span class="ms-2">{{ profile.name }}</span>
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><span class="dropdown-item-text fst-italic">{{ profile.role }}</span></li>
+                <li><button class="dropdown-item">My Products</button></li>
+                <li><button class="dropdown-item">My Purchases</button></li>
+                <li><button class="dropdown-item" (click)="logout()">Log Out</button></li>
+            </ul>
+          </div>
+
+          
         } @else {
           <button class="btn btn-primary btn-login">
             <a class="nav-link" routerLink="/login">Login/Register</a>

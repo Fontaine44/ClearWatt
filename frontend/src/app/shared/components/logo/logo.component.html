@@ -1,13 +1,13 @@
 <div class="logo">
     <img 
         [src]="source"
+        [style.width.px]="size"
+        [ngClass]="imgClass"
+        height="auto"
         alt="ClearWatt Logo"
     >
     @if (showText) {
-        <div 
-            class="mt-4"
-            [style.font-size.px]="fontSize"
-        >
+        <div [style.font-size.px]="fontSize">
             ClearWatt
         </div>
     }

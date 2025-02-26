@@ -1,0 +1,23 @@
+.navbar {
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+}
+
+.nav-link:hover {
+    color: var(--bs-primary);
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    
+    &::after {
+        display: none;
+    }
+}
+
+.bi-person-circle {
+    font-size: 24px;
+    line-height: 24px;
+}

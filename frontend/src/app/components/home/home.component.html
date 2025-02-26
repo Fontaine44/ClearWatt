@@ -162,12 +162,13 @@
 
   <!-- Footer -->
   <div class="home__footer">
-    <app-logo></app-logo>
+    <app-logo [size]="48" [fontSize]="24"></app-logo>
 
     <div class="home__footer-links">
       <a class="nav-link" routerLink="/marketplace">Marketplace</a>
       <a class="nav-link" routerLink="" fragment="producer">Producer</a>
       <a class="nav-link" routerLink="" fragment="consumer">Consumer</a>
+      @if (!_authService.isLoggedIn()) {<a class="nav-link" routerLink="/login">Login</a>}
     </div>
 
     <div class="home__footer-social">

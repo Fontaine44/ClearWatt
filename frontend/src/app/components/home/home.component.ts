@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { HttpService } from '@shared/services/http.service';
+import { HttpService } from '@shared/services/http/http.service';
 import { NavbarComponent } from '@shared/components/navbar/navbar.component';
 import { LogoComponent } from '@shared/components/logo/logo.component';
+import { AuthService } from '@shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   constructor(
     readonly _httpService: HttpService,
     readonly _route: ActivatedRoute,
+    readonly _authService: AuthService,
   ) { }
 
   ngOnInit() {

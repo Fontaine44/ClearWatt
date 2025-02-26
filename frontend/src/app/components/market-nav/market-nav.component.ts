@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { LogoComponent } from '@shared/components/logo/logo.component';
 import { AuthService } from '@shared/services/auth/auth.service';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-market-nav',
   standalone: true,
-  imports: [RouterLink],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  imports: [RouterLink, LogoComponent],
+  templateUrl: './market-nav.component.html',
+  styleUrl: './market-nav.component.scss'
 })
-export class NavbarComponent implements OnInit {
-
+export class MarketNavComponent implements OnInit {
   isLoggedIn = false;
   profile: any = null;
 
