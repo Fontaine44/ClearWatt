@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Alert, AlertService } from '../../services/alert.service';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { Alert, AlertService } from '@shared/services/alert.service';
 
 @Component({
   selector: 'app-alert',
