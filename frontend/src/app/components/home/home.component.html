@@ -7,18 +7,17 @@
       
       <span class="home__start-subtitle">The Next Step in Quebec's Hydrogen</span>
 
-      <button class="btn btn-primary btn-login">
-        <a class="nav-link" routerLink="/marketplace">Go To Marketplace</a>
+      <button class="btn btn-primary">
+        <a class="nav-link" routerLink="/marketplace" (click)="test()">Go To Marketplace</a>
       </button>
     </div>
   </div>
 
   <!-- Potential -->
-  <div class="home__page">
+  <div id="potential" class="home__page">
     <div class="home__half-content">
-      <div class="home__logo">
-       LOGO ClearWatt
-      </div>
+      
+      <app-logo class="home__logo"></app-logo>
 
       <div class="text-center">
         <h1>Green Hydrogen's Potential in Quebec</h1><br>
@@ -43,14 +42,14 @@
     </div>
 
     <div class="home__half-image">
-      <img src="/qc-city.jpg" alt="Quebec Flag">
+      <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_1080/v1740526662/qc-city_wi0zl8.jpg" alt="Quebec Flag">
     </div>
   </div>
 
   <!-- Producer -->
   <div id="producer" class="home__page">
     <div class="home__half-image">
-      <img src="/producer.jpg" alt="Producer Image">
+      <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_1080/v1740526758/producer_vyeje5.jpg" alt="Producer Image">
     </div>
 
     <div class="home__half-content home__producer">
@@ -104,7 +103,7 @@
     </div>
 
     <div class="home__half-image">
-      <img src="/consumer.jpg" alt="Consumer Image">
+      <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_1080/v1740526758/consumer_uvjcuv.jpg" alt="Consumer Image">
     </div>
   </div>
 
@@ -112,7 +111,7 @@
   <div id="about-us" class="home__page">
 
     <div class="home__half-image">
-      <img src="/team.jpg" alt="Team Photo">
+      <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_1080/v1740526757/team_aws6pw.jpg" alt="Team Photo">
     </div>
 
     <div class="home__half-content home__about-us">
@@ -121,36 +120,36 @@
       <div class="container">
         <div class="row">
           <div class="col-6 col-xl-4 p-4 home__about-us-person">
-            <img src="/flag.jpg" alt="Person 1">
+            <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_75/v1740526756/logo_jctera.png" alt="Person 1">
             <h5>Person 1</h5>
             <div>
               Info about Person 1
             </div>
           </div>
           <div class="col-6 col-xl-4 p-4 home__about-us-person">
-            <img src="/flag.jpg" alt="Person 2">
-            <h5>Person 1</h5>
+            <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_75/v1740526756/logo_jctera.png" alt="Person 2">
+            <h5>Person 2</h5>
             <div>
               Info about Person 2
             </div>
           </div>
           <div class="col-6 col-xl-4 p-4 home__about-us-person">
-            <img src="/flag.jpg" alt="Person 3">
-            <h5>Person 1</h5>
+            <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_75/v1740526756/logo_jctera.png" alt="Person 3">
+            <h5>Person 3</h5>
             <div>
               Info about Person 3
             </div>
           </div>
           <div class="col-6 p-4 home__about-us-person">
-            <img src="/flag.jpg" alt="Person 4">
-            <h5>Person 1</h5>
+            <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_75/v1740526756/logo_jctera.png" alt="Person 4">
+            <h5>Person 4</h5>
             <div>
               Info about Person 4
             </div>
           </div>
           <div class="col-6 p-4 home__about-us-person">
-            <img src="/flag.jpg" alt="Person 5">
-            <h5>Person 1</h5>
+            <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_75/v1740526756/logo_jctera.png" alt="Person 5">
+            <h5>Person 5</h5>
             <div>
               Info about Person 5
             </div>
@@ -163,14 +162,18 @@
 
   <!-- Footer -->
   <div class="home__footer">
-    <div class="home__footer-logo">
-      LOGO ClearWatt
-    </div>
+    <app-logo></app-logo>
 
     <div class="home__footer-links">
       <a class="nav-link" routerLink="/marketplace">Marketplace</a>
       <a class="nav-link" routerLink="" fragment="producer">Producer</a>
       <a class="nav-link" routerLink="" fragment="consumer">Consumer</a>
+    </div>
+
+    <div class="home__footer-social">
+      <a href="https://www.linkedin.com" target="_blank">
+        <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_30/v1740529905/linkedin_ojz04z.png" alt="LinkedIn Logo">
+      </a>
     </div>
   </div>
 </div>

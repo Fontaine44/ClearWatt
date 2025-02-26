@@ -3,10 +3,8 @@ $secondary: #535353;
 $btn-border-radius: 8px;
 $btn-padding-y: 8px;
 $btn-padding-x: 16px;
-
-:root {
-    --bs-nav-link-font-weight: 500;
-}
+$btn-font-weight: 500;
+$nav-link-font-weight: 500;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "../node_modules/bootstrap-icons/font/bootstrap-icons";

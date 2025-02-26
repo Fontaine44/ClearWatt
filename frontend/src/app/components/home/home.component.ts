@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { HttpService } from '../../shared/services/http.service';
-import { environment } from '../../../environments/environment';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
+import { LogoComponent } from "../../shared/components/logo/logo.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, NavbarComponent],
+  imports: [RouterLink, NavbarComponent, LogoComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -20,10 +20,6 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._httpService.get(environment.apiUrl).subscribe((data) => {
-      this.status = data.status;
-    });
-
     this._route.fragment.subscribe((fragment: string | null) => {
       if (fragment) {
         const element = document.getElementById(fragment);
@@ -32,5 +28,9 @@ export class HomeComponent implements OnInit {
         }
       }
     });
+  }
+
+  test() {
+    console.log('test');
   }
 }
