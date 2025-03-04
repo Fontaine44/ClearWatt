@@ -20,14 +20,16 @@ export class MarketNavComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = this._authService.isLoggedIn();
+    if (!this._authService.isLoggedIn()) {
+      this._authService.loginConsumerDemo();
+    }
+
     this.profile = this._authService.getProfile();
   }
 
   logout(): void {
     this._router.navigate(['/login']);
     this._authService.logout();
-    this.isLoggedIn = false;
     this.profile = null;
   }
 }

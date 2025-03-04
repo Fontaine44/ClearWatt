@@ -26,11 +26,6 @@ export class MapComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // If the user is not logged in, log in as a consumer demo
-    if (!this._authService.isLoggedIn()) {
-      this._authService.loginConsumerDemo();
-    }
-
     // Get producers from the API
     this._httpService.get(`${environment.apiUrl}/producer`).subscribe({
       next: (response) => {

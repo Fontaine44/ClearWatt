@@ -36,10 +36,6 @@ export class MarketplaceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this._authService.isLoggedIn()) {
-      this._authService.loginConsumerDemo();
-    }
-
     this._httpService.get(`${environment.apiUrl}/producer`).subscribe({
       next: (response) => {
         this.producers = response.producers;
