@@ -161,3 +161,8 @@ table {
 	font-weight: 900;
 	font-style: italic;
 }
+
+.custom-popover > div.popover-body {
+	text-align: justify;
+	text-justify: inter-word;
+}

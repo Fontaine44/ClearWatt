@@ -8,7 +8,7 @@
       <span class="home__start-subtitle">The Next Step in Quebec's Hydrogen</span>
 
       <button class="btn btn-primary">
-        <a class="nav-link" routerLink="/marketplace" (click)="test()">Go To Marketplace</a>
+        <a class="nav-link" routerLink="/marketplace">Go To Marketplace</a>
       </button>
     </div>
   </div>
@@ -117,45 +117,80 @@
     <div class="home__half-content home__about-us">
       <h1>About Us</h1>
 
-      <div class="container">
+      <div class="d-flex flex-column w-100 gap-4">
         <div class="row">
-          <div class="col-6 col-xl-4 p-4 home__about-us-person">
-            <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_75/v1740526756/logo_jctera.png" alt="Person 1">
-            <h5>Person 1</h5>
-            <div>
-              Info about Person 1
+          <div class="col-4 p-3 home__about-us__person">
+            <div
+              class="text-center" 
+              data-bs-toggle="popover"
+              data-bs-title="Bio"
+              data-bs-trigger="hover focus" 
+              data-bs-custom-class="custom-popover"
+              data-bs-content="Arev is a 4th-year Bioresource engineering who is passionate about green hydrogen and bioenergy. He has been involved in research and development since the beginning of his studies."
+            >
+              <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_150/v1741110895/arev_uijoxh.jpg" alt="Arev Citak">
+              <h4 class="mt-3">Arev Citak</h4>
             </div>
           </div>
-          <div class="col-6 col-xl-4 p-4 home__about-us-person">
-            <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_75/v1740526756/logo_jctera.png" alt="Person 2">
-            <h5>Person 2</h5>
-            <div>
-              Info about Person 2
+
+          <div class="col-4 p-3 home__about-us__person">
+            <div
+              class="text-center" 
+              data-bs-toggle="popover"
+              data-bs-title="Bio"
+              data-bs-trigger="hover focus" 
+              data-bs-custom-class="custom-popover"
+              data-bs-content="Karim is a 4th-year Bioresource Engineering student minoring in Finance, specializing in Renewable Energy, Biotechnology, and Climate Finance. He as a strong background in sustainability-driven innovation, and is a founding member of McGill's NASA-CSA Food Production Initiative team."
+            >
+              <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_150/v1741111206/Karim_ex4uyg.png" alt="Karim Hoyek">
+              <h4 class="mt-3">Karim Hoyek</h4>
             </div>
           </div>
-          <div class="col-6 col-xl-4 p-4 home__about-us-person">
-            <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_75/v1740526756/logo_jctera.png" alt="Person 3">
-            <h5>Person 3</h5>
-            <div>
-              Info about Person 3
-            </div>
-          </div>
-          <div class="col-6 p-4 home__about-us-person">
-            <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_75/v1740526756/logo_jctera.png" alt="Person 4">
-            <h5>Person 4</h5>
-            <div>
-              Info about Person 4
-            </div>
-          </div>
-          <div class="col-6 p-4 home__about-us-person">
-            <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_75/v1740526756/logo_jctera.png" alt="Person 5">
-            <h5>Person 5</h5>
-            <div>
-              Info about Person 5
+
+          <div class="col-4 p-3 home__about-us__person">
+            <div
+              class="text-center" 
+              data-bs-toggle="popover"
+              data-bs-title="Bio"
+              data-bs-trigger="hover focus"
+              data-bs-custom-class="custom-popover"
+              data-bs-content="Victor is a 4th-year Bioresource Engineering student from Lyon, France. He is interested in sustainable design, biomimicry, waste management, fermentation, fungi and renewable energies. He aspires to make a difference in mitigating climate change through innovation."
+            >
+              <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_150/v1741111664/victor_xgrsht.jpg" alt="Victor Fourquet">
+              <h4 class="mt-3">Victor Fourquet</h4>
             </div>
           </div>
         </div>
 
+        <div class="row">
+          <div class="col-5 p-3 home__about-us__person">
+            <div
+              class="text-center" 
+              data-bs-toggle="popover"
+              data-bs-title="Bio"
+              data-bs-trigger="hover focus"
+              data-bs-custom-class="custom-popover"
+              data-bs-content="Alexia is 4th-year Bioresource Engineering student at McGill University with a multinational background, having lived in France, Germany, China, the U.S., and Canada. She is passionate about sustainable resource and waste management, striving to develop solutions for a more responsible future."
+            >
+              <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_150/v1741111478/alexia_rb9eba.jpg" alt="Alexia Girard Boisson">
+              <h4 class="mt-3">Alexia Girard Boisson</h4>
+            </div>
+          </div>
+
+          <div class="col-5 p-3 home__about-us__person">
+            <div
+              class="text-center" 
+              data-bs-toggle="popover"
+              data-bs-title="Bio"
+              data-bs-trigger="hover focus"
+              data-bs-custom-class="custom-popover"
+              data-bs-content="Malik is pursuing an M.Sc in Civil Engineering, specializing in Green Hydrogen LCA and TEA. His academic journey is fueled by a strong commitment to addressing the urgent challenges of climate change and promoting environmental sustainability through energy systems analysis, and industrial ecology."
+            >
+              <img src="https://res.cloudinary.com/dodu3btfh/image/upload/c_pad,h_150/v1741112154/malik_ljaldj.jpg" alt="Malik Cherrat">
+              <h4 class="mt-3">Malik Cherrat</h4>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

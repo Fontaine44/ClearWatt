@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { HttpService } from '@shared/services/http/http.service';
 import { NavbarComponent } from '@shared/components/navbar/navbar.component';
@@ -12,7 +12,7 @@ import { AuthService } from '@shared/services/auth/auth.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   status = false;
 
   constructor(
@@ -32,7 +32,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  test() {
-    console.log('test');
+  ngAfterViewInit(): void {
+    const popoverTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="popover"]'));
+    popoverTriggerList.forEach(popoverTriggerEl => new (window as any).bootstrap.Popover(popoverTriggerEl));
   }
 }
