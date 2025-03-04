@@ -16,7 +16,7 @@
     </div>
 
     <div>
-      <select class="form-select" id="sortSelect" [(ngModel)]="sortOption" (change)="onSortChange()" name="sortOption">
+      <select class="form-select" id="sortSelect" [(ngModel)]="sortOption" (change)="onFiltersChange()" name="sortOption">
         <option value="priceAsc">Price: Low to High &uarr;</option>
         <option value="priceDesc">Price: High to Low &darr;</option>
         <option value="volumeAsc">Volume: Low to High &uarr;</option>
@@ -34,15 +34,15 @@
       
         <div class="form-check">
           <input class="form-check-input" type="radio" name="contractType" id="directPurchaseRadio"
-            [(ngModel)]="contractType" (change)="onContractTypeChange()" value="Direct purchase">
+            [(ngModel)]="contractType" (change)="setProducers()" value="Direct Purchase">
           <label class="form-check-label" for="directPurchaseRadio">
-            Direct purchase
+            Direct Purchase
           </label>
         </div>
       
         <div class="form-check">
           <input class="form-check-input" type="radio" name="contractType" id="PPARadio"
-            [(ngModel)]="contractType" (change)="onContractTypeChange()" value="PPA">
+            [(ngModel)]="contractType" (change)="setProducers()" value="PPA">
 
           <label class="form-check-label" for="PPARadio">
             PPA
@@ -54,7 +54,7 @@
         <label for="postalCodeInput" class="form-label">Location:</label>
         <div class="input-group">
           <input type="text" class="form-control" id="postalCodeInput" placeholder="Postal code"
-            [(ngModel)]="postalCode" (ngModelChange)="onPostalCodeChange()" name="postalCode">
+            [(ngModel)]="postalCode" (ngModelChange)="onFiltersChange()" name="postalCode">
 
           <button class="btn btn-secondary" type="button" id="button-locate" (click)="onLocateClick()">
             <i class="bi bi-geo-alt-fill"></i>
@@ -67,12 +67,12 @@
         
         <div class="input-group mb-2">
           <span class="input-group-text w-25">Min.</span>
-          <input type="number" class="form-control" [(ngModel)]="minVolume" (ngModelChange)="onVolumeChange()" name="minVolume" placeholder="kg">
+          <input type="number" class="form-control" [(ngModel)]="minVolume" (ngModelChange)="onFiltersChange()" name="minVolume" placeholder="kg">
         </div>
       
         <div class="input-group">
           <span class="input-group-text w-25">Max.</span>
-          <input type="number" class="form-control" [(ngModel)]="maxVolume" (ngModelChange)="onVolumeChange()" name="maxVolume" placeholder="kg">
+          <input type="number" class="form-control" [(ngModel)]="maxVolume" (ngModelChange)="onFiltersChange()" name="maxVolume" placeholder="kg">
         </div>
       </div>
 
@@ -81,12 +81,12 @@
         
         <div class="input-group mb-2">
           <span class="input-group-text w-25">Min.</span>
-          <input type="number" class="form-control" [(ngModel)]="minPrice" (ngModelChange)="onPriceChange()" name="minPrice" placeholder="$/kg">
+          <input type="number" class="form-control" [(ngModel)]="minPrice" (ngModelChange)="onFiltersChange()" name="minPrice" placeholder="$/kg">
         </div>
       
         <div class="input-group">
           <span class="input-group-text w-25">Max.</span>
-          <input type="number" class="form-control" [(ngModel)]="maxPrice" (ngModelChange)="onPriceChange()" name="maxPrice" placeholder="$/kg">
+          <input type="number" class="form-control" [(ngModel)]="maxPrice" (ngModelChange)="onFiltersChange()" name="maxPrice" placeholder="$/kg">
         </div>
       </div>
 
@@ -110,26 +110,42 @@
           </div>
 
           <div class="marketplace__list__item__info ms-auto">
-            <div class="marketplace__list__item__trapezoid">
-              <div class="marketplace__list__item__price">
-                <div>
-                  {{ producer.dollars_per_kg }} $/kg
-                </div>
-                <div>
-                  Available volume: {{ producer.available_kg }} kg
+            @if (contractType === 'PPA') {
+              <div class="marketplace__list__item__trapezoid marketplace__list__item__trapezoid--ppa">
+                <div class="marketplace__list__item__price fs-5">
+                  <div class="fst-italic fs-6">
+                    Starting offer :
+                  </div>
+                  <div>
+                    {{ producer.dollars_per_kg }} $/kg
+                  </div>
+                  <div>
+                    Contract: {{ producer.contract_duration }} years
+                  </div>
                 </div>
               </div>
-            </div>
+            } @else {
+              <div class="marketplace__list__item__trapezoid marketplace__list__item__trapezoid--dp">
+                <div class="marketplace__list__item__price fs-5">
+                  <div>
+                    {{ producer.dollars_per_kg }} $/kg
+                  </div>
+                  <div>
+                    Available volume: {{ producer.available_kg }} kg
+                  </div>
+                </div>
+              </div>
+            }
           </div>
           
         </div>
       } @empty {
-        @if (searchTerm === '') {
-          <div class="marketplace__list__item">
+        @if (loading) {
+          <div class="marketplace__list__item marketplace__list__item--loading">
             <h2>Loading...</h2>
           </div>
-        } @else {
-          <div class="marketplace__list__item">
+        } @else if (filteredProducers.length === 0) {
+          <div class="marketplace__list__item marketplace__list__item--loading">
             <h2>No producers found</h2>
           </div>
         }

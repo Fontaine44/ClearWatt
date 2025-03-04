@@ -70,6 +70,12 @@
                 background-color: #e9ecef;
             }
 
+            &--loading:hover {
+                cursor: auto;
+                border: 1px solid #e0e0e0;
+                background-color: #f8f9fa;
+            }
+
             &__image {
                 width: 100px;
                 height: 100%;
@@ -91,11 +97,18 @@
 
             &__trapezoid {
                 width: 400px;
-                border-bottom: 100px solid var(--bs-primary);
                 border-left: 100px solid transparent;
                 border-radius: 0px 8px 8px 0px;
                 height: 100px;
                 color: #FFF;
+
+                &--dp {
+                    border-bottom: 100px solid var(--bs-primary);
+                }
+
+                &--ppa {
+                    border-bottom: 100px solid var(--bs-secondary);
+                }
             }
 
             &__price {
@@ -104,7 +117,6 @@
                 align-items: flex-end;
                 justify-content: space-evenly;
                 padding-right: 16px;
-                font-size: 20px;
                 height: 100px;
             }
         }
