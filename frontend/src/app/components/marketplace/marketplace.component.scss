@@ -10,13 +10,27 @@
 
     &__header {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         margin-bottom: 16px;
     }
 
     &__search {
         width: 300px;
+
+        .form-control {
+            padding-left: 38px;
+        }
+
+        .form-control-icon {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: 38px;
+            line-height: 38px;
+            text-align: center;
+            pointer-events: none;
+            color: var(--bs-body-color)
+        }
     }
 
     &__producers {
@@ -28,6 +42,7 @@
     &__filters {
         width: 20%;
         padding: 16px;
+        height: fit-content;
         border: 1px solid #e0e0e0;
         border-radius: 8px;
         background-color: #f8f9fa;
@@ -49,6 +64,11 @@
             border-radius: 8px;
             background-color: #f8f9fa;
             cursor: pointer;
+
+            &:hover {
+                border: 1px solid #8f8f8f;
+                background-color: #e9ecef;
+            }
 
             &__image {
                 width: 100px;

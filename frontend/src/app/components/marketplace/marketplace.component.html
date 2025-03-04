@@ -2,7 +2,9 @@
   <div class="marketplace__header">
       
     <h1>Marketplace</h1>
-    <div class="marketplace__search">
+    
+    <div class="marketplace__search form-group ms-auto me-3">
+      <i class="bi bi-search form-control-icon"></i>
       <input
         type="search"
         class="form-control"
@@ -12,11 +14,82 @@
         (ngModelChange)="onSearchChange($event)"
       />
     </div>
+
+    <div>
+      <select class="form-select" id="sortSelect" [(ngModel)]="sortOption" (change)="onSortChange()" name="sortOption">
+        <option value="priceAsc">Price: Low to High &uarr;</option>
+        <option value="priceDesc">Price: High to Low &darr;</option>
+        <option value="volumeAsc">Volume: Low to High &uarr;</option>
+        <option value="volumeDesc">Volume: High to Low &darr;</option>
+        <option value="distanceAsc">Distance: Low to High &uarr;</option>
+        <option value="distanceDesc">Distance: High to Low &darr;</option>
+      </select>
+    </div>
   </div>
 
   <div class="marketplace__producers">
     <div class="marketplace__filters">
-      Filters will go here
+      <div class="mb-3">
+        <label for="contractTypeInput" class="form-label">Contract Type:</label>
+      
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="contractType" id="directPurchaseRadio"
+            [(ngModel)]="contractType" (change)="onContractTypeChange()" value="Direct purchase">
+          <label class="form-check-label" for="directPurchaseRadio">
+            Direct purchase
+          </label>
+        </div>
+      
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="contractType" id="PPARadio"
+            [(ngModel)]="contractType" (change)="onContractTypeChange()" value="PPA">
+
+          <label class="form-check-label" for="PPARadio">
+            PPA
+          </label>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="postalCodeInput" class="form-label">Location:</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="postalCodeInput" placeholder="Postal code"
+            [(ngModel)]="postalCode" (ngModelChange)="onPostalCodeChange()" name="postalCode">
+
+          <button class="btn btn-secondary" type="button" id="button-locate" (click)="onLocateClick()">
+            <i class="bi bi-geo-alt-fill"></i>
+          </button>
+        </div>        
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Volume:</label>
+        
+        <div class="input-group mb-2">
+          <span class="input-group-text w-25">Min.</span>
+          <input type="number" class="form-control" [(ngModel)]="minVolume" (ngModelChange)="onVolumeChange()" name="minVolume" placeholder="kg">
+        </div>
+      
+        <div class="input-group">
+          <span class="input-group-text w-25">Max.</span>
+          <input type="number" class="form-control" [(ngModel)]="maxVolume" (ngModelChange)="onVolumeChange()" name="maxVolume" placeholder="kg">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Price:</label>
+        
+        <div class="input-group mb-2">
+          <span class="input-group-text w-25">Min.</span>
+          <input type="number" class="form-control" [(ngModel)]="minPrice" (ngModelChange)="onPriceChange()" name="minPrice" placeholder="$/kg">
+        </div>
+      
+        <div class="input-group">
+          <span class="input-group-text w-25">Max.</span>
+          <input type="number" class="form-control" [(ngModel)]="maxPrice" (ngModelChange)="onPriceChange()" name="maxPrice" placeholder="$/kg">
+        </div>
+      </div>
+
     </div>
 
     <div class="marketplace__list">

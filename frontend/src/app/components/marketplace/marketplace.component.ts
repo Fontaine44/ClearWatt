@@ -19,6 +19,13 @@ export class MarketplaceComponent implements OnInit {
   filteredProducers: Producer[] = [];
   searchTerm: string = '';
   searchSubject: Subject<string> = new Subject();
+  sortOption: 'priceAsc' | 'priceDesc' | 'distanceAsc' | 'distanceDesc' | 'volAsc' | 'volDesc' = 'priceAsc';
+  contractType: 'Direct purchase' | 'PPA' = 'Direct purchase';
+  postalCode: string = '';
+  minVolume: number | null = null;
+  maxVolume: number | null = null;
+  minPrice: number | null = null;
+  maxPrice: number | null = null;
 
   constructor(
     readonly _httpService: HttpService,
@@ -64,7 +71,32 @@ export class MarketplaceComponent implements OnInit {
     }
   }
 
+  onSortChange() {
+    console.log('Sort changed');
+  }
+
   onProducerClick(id: number) {
     this._router.navigate(['/map'], { queryParams: { id: id } });
+  }
+
+  onContractTypeChange() {
+    console.log(this.contractType);
+  }
+
+  onPostalCodeChange() {
+    console.log('Postal code changed');
+  }
+
+  onVolumeChange() {
+    console.log('Volume changed');
+  }
+
+  onPriceChange() {
+    console.log('Price changed');
+    console.log(this.minPrice, this.maxPrice);
+  }
+
+  onLocateClick() {
+    console.log('Find location clicked');
   }
 }
