@@ -2,4 +2,4 @@ flask
 flask-cors
 flask-sqlalchemy
 gunicorn
-pegeocode
+pgeocode
