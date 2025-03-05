@@ -25,15 +25,16 @@ export class MarketplaceComponent implements OnInit {
   searchSubject: Subject<string> = new Subject();
   filterSubject: Subject<void> = new Subject();
   locationSubject: Subject<void> = new Subject();
-  sortOption: 'priceAsc' | 'priceDesc' | 'distanceAsc' | 'distanceDesc' | 'volAsc' | 'volDesc' = 'priceAsc';
+  sortOption: 'priceAsc' | 'priceDesc' | 'distanceAsc' | 'distanceDesc' = 'priceAsc';
   contractType: 'Direct Purchase' | 'PPA' = 'Direct Purchase';
   postalCode: string = '';
   postalCodeLatitude: number = 0;
   postalCodeLongitude: number = 0;
   minVolume!: number;
-  maxVolume: number | null = null;
-  minPrice!: number;
-  maxPrice: number | null = null;
+  maxVolume!: number;
+  minContract!: number;
+  maxContract!: number;
+  maxPrice!: number;
 
   constructor(
     readonly _httpService: HttpService,
@@ -71,6 +72,7 @@ export class MarketplaceComponent implements OnInit {
     this._httpService.get(`${environment.apiUrl}/producer`).subscribe({
       next: (response) => {
         this.producers = response.producers;
+        this.maxPrice = this.getMaxPrice();
         this.setProducers();
       },
       error: (error) => {
@@ -82,11 +84,36 @@ export class MarketplaceComponent implements OnInit {
 
   setProducers() {
     this.loading = true;
-
+  
     this.filteredProducers = [...this.producers];
 
     // Contract type filter
     this.filteredProducers = this.filteredProducers.filter(producer => producer.contract_type === this.contractType);
+
+    // Volume filter
+    if (this.contractType === 'Direct Purchase') {
+      if (this.minVolume) {
+        this.filteredProducers = this.filteredProducers.filter(producer => producer.available_kg >= this.minVolume);
+      }
+      if (this.maxVolume) {
+        this.filteredProducers = this.filteredProducers.filter(producer => producer.available_kg <= this.maxVolume);
+      }
+    }
+
+    // Contract length filter
+    if (this.contractType === 'PPA') {
+      if (this.minContract) {
+        this.filteredProducers = this.filteredProducers.filter(producer => producer.contract_duration >= this.minContract);
+      }
+      if (this.maxContract) {
+        this.filteredProducers = this.filteredProducers.filter(producer => producer.contract_duration <= this.maxContract);
+      }
+    }
+
+    // Price filter
+    if (this.maxPrice) {
+      this.filteredProducers = this.filteredProducers.filter(producer => producer.dollars_per_kg <= this.maxPrice);
+    }
     
     this.loading = false;
   }
@@ -185,5 +212,9 @@ export class MarketplaceComponent implements OnInit {
         console.error(error);
       }
     });
+  }
+
+  getMaxPrice(): number {
+    return Math.max(...this.producers.map(producer => producer.dollars_per_kg));
   }
 }

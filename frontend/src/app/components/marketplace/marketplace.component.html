@@ -19,8 +19,6 @@
       <select class="form-select" id="sortSelect" [(ngModel)]="sortOption" (change)="onFiltersChange()" name="sortOption">
         <option value="priceAsc">Price: Low to High &uarr;</option>
         <option value="priceDesc">Price: High to Low &darr;</option>
-        <option value="volumeAsc">Volume: Low to High &uarr;</option>
-        <option value="volumeDesc">Volume: High to Low &darr;</option>
         <option value="distanceAsc">Distance: Low to High &uarr;</option>
         <option value="distanceDesc">Distance: High to Low &darr;</option>
       </select>
@@ -29,13 +27,14 @@
 
   <div class="marketplace__producers">
     <div class="marketplace__filters">
-      <div class="mb-3">
+      <div class="mb-4">
         <label for="contractTypeInput" class="form-label">Contract Type:</label>
       
         <div class="form-check">
           <input class="form-check-input" type="radio" name="contractType" id="directPurchaseRadio"
             [(ngModel)]="contractType" (change)="setProducers()" value="Direct Purchase">
-          <label class="form-check-label" for="directPurchaseRadio">
+             
+          <label class="form-check-label poppins-light" for="directPurchaseRadio">
             Direct Purchase
           </label>
         </div>
@@ -44,13 +43,13 @@
           <input class="form-check-input" type="radio" name="contractType" id="PPARadio"
             [(ngModel)]="contractType" (change)="setProducers()" value="PPA">
 
-          <label class="form-check-label" for="PPARadio">
+          <label class="form-check-label poppins-light" for="PPARadio">
             PPA
           </label>
         </div>
       </div>
 
-      <div class="mb-3">
+      <div class="mb-4">
         <label for="postalCodeInput" class="form-label">Location:</label>
         <div class="input-group">
           <input type="text" class="form-control" id="postalCodeInput" name="postalCode" placeholder="Postal code"
@@ -72,33 +71,79 @@
       </div>
 
       <div class="mb-3">
+        <label for="maxPriceRange" class="form-label">
+          Max. Price: <span class="poppins-light">{{maxPrice}} $/kg</span>
+        </label>
+        <input type="range" class="form-range" id="maxPriceRange" [max]="getMaxPrice()" [(ngModel)]="maxPrice" (ngModelChange)="onFiltersChange()">
+      </div>
+
+      <div *ngIf="contractType == 'Direct Purchase'" class="mb-4">
         <label class="form-label">Volume:</label>
         
         <div class="input-group mb-2">
           <span class="input-group-text w-25">Min.</span>
-          <input type="number" class="form-control" [(ngModel)]="minVolume" (ngModelChange)="onFiltersChange()" name="minVolume" placeholder="kg">
+          <input 
+            type="number"
+            class="form-control"
+            name="minVolume"
+            placeholder="kg"
+            [(ngModel)]="minVolume"
+            (ngModelChange)="onFiltersChange()"
+            [class.is-invalid]="minVolume !== null && maxVolume !== null && minVolume > maxVolume"
+          >
         </div>
       
         <div class="input-group">
           <span class="input-group-text w-25">Max.</span>
-          <input type="number" class="form-control" [(ngModel)]="maxVolume" (ngModelChange)="onFiltersChange()" name="maxVolume" placeholder="kg">
+          <input
+            type="number"
+            class="form-control"
+            name="maxVolume"
+            placeholder="kg"
+            [(ngModel)]="maxVolume"
+            (ngModelChange)="onFiltersChange()"
+            [class.is-invalid]="minVolume !== null && maxVolume !== null && minVolume > maxVolume"
+          >
+        </div>
+        
+        <div *ngIf="minVolume !== null && maxVolume !== null && minVolume > maxVolume" class="text-danger">
+          <small>Minimum volume must be less than maximum volume.</small>
         </div>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Price:</label>
+      <div *ngIf="contractType == 'PPA'" class="mb-4">
+        <label class="form-label">Contract Duration:</label>
         
         <div class="input-group mb-2">
           <span class="input-group-text w-25">Min.</span>
-          <input type="number" class="form-control" [(ngModel)]="minPrice" (ngModelChange)="onFiltersChange()" name="minPrice" placeholder="$/kg">
+          <input 
+            type="number"
+            class="form-control"
+            name="minContract"
+            placeholder="years"
+            [(ngModel)]="minContract"
+            (ngModelChange)="onFiltersChange()"
+            [class.is-invalid]="minContract !== null && maxContract !== null && minContract > maxContract"
+          >
         </div>
       
         <div class="input-group">
           <span class="input-group-text w-25">Max.</span>
-          <input type="number" class="form-control" [(ngModel)]="maxPrice" (ngModelChange)="onFiltersChange()" name="maxPrice" placeholder="$/kg">
+          <input
+            type="number"
+            class="form-control"
+            name="maxContract"
+            placeholder="years"
+            [(ngModel)]="maxContract"
+            (ngModelChange)="onFiltersChange()"
+            [class.is-invalid]="minContract !== null && maxContract !== null && minContract > maxContract"
+          >
+        </div>
+        
+        <div *ngIf="minContract != null && maxContract != null && minContract > maxContract" class="text-danger">
+          <small>Minimum contract duration must be less than the maximum.</small>
         </div>
       </div>
-
     </div>
 
     <div class="marketplace__list">
@@ -110,16 +155,14 @@
           </div>
 
           <div>
-            <h2>
+            <h2 class="m-0">
               {{ producer.name }}
             </h2>
 
-            @if (producer.distance) {
-              <div>
-                <i class="bi bi-geo-alt"></i>
-                {{ producer.distance }} km
-              </div>
-            }
+            <div *ngIf="producer.distance" class="mt-3">
+              <i class="bi bi-geo-alt"></i>
+              {{ producer.distance }} km
+            </div>
           </div>
 
           <div class="marketplace__list__item__info ms-auto">
