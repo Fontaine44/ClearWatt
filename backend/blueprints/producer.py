@@ -27,7 +27,6 @@ def get_producers():
         lat = postal_code_info.latitude
         lon = postal_code_info.longitude
 
-    print(lat, lon)
     if lat and lon:
         lat = float(lat)
         lon = float(lon)

@@ -84,7 +84,7 @@ export class MarketplaceComponent implements OnInit {
 
   setProducers() {
     this.loading = true;
-  
+
     this.filteredProducers = [...this.producers];
 
     // Contract type filter
@@ -114,7 +114,23 @@ export class MarketplaceComponent implements OnInit {
     if (this.maxPrice) {
       this.filteredProducers = this.filteredProducers.filter(producer => producer.dollars_per_kg <= this.maxPrice);
     }
-    
+
+    // Sort producers
+    switch (this.sortOption) {
+      case 'priceAsc':
+        this.filteredProducers.sort((a, b) => a.dollars_per_kg - b.dollars_per_kg);
+        break;
+      case 'priceDesc':
+        this.filteredProducers.sort((a, b) => b.dollars_per_kg - a.dollars_per_kg);
+        break;
+      case 'distanceAsc':
+        this.filteredProducers.sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity));
+        break;
+      case 'distanceDesc':
+        this.filteredProducers.sort((a, b) => (b.distance ?? Infinity) - (a.distance ?? Infinity));
+        break;
+    }
+
     this.loading = false;
   }
 
