@@ -1,5 +1,5 @@
 @for (alert of alerts; let index = $index; track index;) {
-  <div class="alert alert-{{alert.type}} alert-dismissible fade show mb-2" role="alert">
+  <div class="alert alert-{{alert.type}} alert-dismissible fade show mb-2" role="alert" @fadeInOut>
     {{alert.message}}
     <button type="button" class="btn-close" (click)="removeAlert(alert)" aria-label="Close"></button>
   </div>

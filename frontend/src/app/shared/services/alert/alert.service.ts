@@ -18,6 +18,22 @@ export class AlertService {
 
   constructor() { }
 
+  success(message: string) {
+    this.addAlert('success', message);
+  }
+
+  danger(message: string) {
+    this.addAlert('danger', message);
+  }
+
+  warning(message: string) {
+    this.addAlert('warning', message);
+  }
+
+  info(message: string) {
+    this.addAlert('info', message);
+  }
+
   // Add an alert
   addAlert(type: AlertType, message: string) {
     const currentAlerts = this.alertsSubject.value;

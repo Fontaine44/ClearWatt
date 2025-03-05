@@ -57,7 +57,7 @@
         &__item {
             display: flex;
             align-items: center;
-            height: 100px;
+            height: 120px;
             gap: 16px;
             padding: 16px 0 16px 16px;
             border: 1px solid #e0e0e0;
@@ -99,15 +99,15 @@
                 width: 400px;
                 border-left: 100px solid transparent;
                 border-radius: 0px 8px 8px 0px;
-                height: 100px;
+                height: 120px;
                 color: #FFF;
 
                 &--dp {
-                    border-bottom: 100px solid var(--bs-primary);
+                    border-bottom: 120px solid var(--bs-primary);
                 }
 
                 &--ppa {
-                    border-bottom: 100px solid var(--bs-secondary);
+                    border-bottom: 120px solid var(--bs-secondary);
                 }
             }
 
@@ -117,7 +117,7 @@
                 align-items: flex-end;
                 justify-content: space-evenly;
                 padding-right: 16px;
-                height: 100px;
+                height: 120px;
             }
         }
     }

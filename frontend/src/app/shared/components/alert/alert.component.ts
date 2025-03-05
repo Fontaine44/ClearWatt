@@ -9,7 +9,6 @@ import { Alert, AlertService } from '@shared/services/alert/alert.service';
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.scss',
   animations: [
-    // Import Angular animations for fade-out effect
     trigger('fadeInOut', [
       transition(':leave', [
         animate('500ms ease-out', style({ opacity: 0 }))

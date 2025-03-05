@@ -53,13 +53,22 @@
       <div class="mb-3">
         <label for="postalCodeInput" class="form-label">Location:</label>
         <div class="input-group">
-          <input type="text" class="form-control" id="postalCodeInput" placeholder="Postal code"
-            [(ngModel)]="postalCode" (ngModelChange)="onFiltersChange()" name="postalCode">
-
+          <input type="text" class="form-control" id="postalCodeInput" name="postalCode" placeholder="Postal code"
+            [(ngModel)]="postalCode"
+            (ngModelChange)="onPostalCodeChange(postalCodeInput)"
+            #postalCodeInput="ngModel"
+            required
+            pattern="[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d"
+          >
+      
           <button class="btn btn-secondary" type="button" id="button-locate" (click)="onLocateClick()">
-            <i class="bi bi-geo-alt-fill"></i>
+            <i class="bi bi-crosshair"></i>
           </button>
-        </div>        
+        </div>
+        
+        <div *ngIf="postalCodeInput.invalid && postalCodeInput.touched && postalCodeInput.value" class="text-danger">
+          <small>Invalid postal code.<br> Please use the format: A1A 1A1</small>
+        </div>
       </div>
 
       <div class="mb-3">
@@ -104,22 +113,26 @@
             <h2>
               {{ producer.name }}
             </h2>
-            <div>
-              100km
-            </div>
+
+            @if (producer.distance) {
+              <div>
+                <i class="bi bi-geo-alt"></i>
+                {{ producer.distance }} km
+              </div>
+            }
           </div>
 
           <div class="marketplace__list__item__info ms-auto">
             @if (contractType === 'PPA') {
               <div class="marketplace__list__item__trapezoid marketplace__list__item__trapezoid--ppa">
                 <div class="marketplace__list__item__price fs-5">
-                  <div class="fst-italic fs-6">
+                  <div class="poppins-light-italic">
                     Starting offer :
                   </div>
-                  <div>
+                  <div class="poppins-medium fs-5">
                     {{ producer.dollars_per_kg }} $/kg
                   </div>
-                  <div>
+                  <div class="poppins-light fs-5">
                     Contract: {{ producer.contract_duration }} years
                   </div>
                 </div>
@@ -127,10 +140,10 @@
             } @else {
               <div class="marketplace__list__item__trapezoid marketplace__list__item__trapezoid--dp">
                 <div class="marketplace__list__item__price fs-5">
-                  <div>
+                  <div class="fs-4">
                     {{ producer.dollars_per_kg }} $/kg
                   </div>
-                  <div>
+                  <div class="poppins-light">
                     Available volume: {{ producer.available_kg }} kg
                   </div>
                 </div>

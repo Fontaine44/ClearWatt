@@ -10,4 +10,5 @@ interface Producer {
     dollars_per_kg: number;
     available_kg: number;
     logo_url: string;
+    distance?: number;
 }

@@ -4,8 +4,10 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpService } from '@shared/services/http/http.service';
 import { AuthService } from '@shared/services/auth/auth.service';
+import { AlertService } from '@shared/services/alert/alert.service';
 import { environment } from '@env/environment';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-marketplace',
@@ -15,15 +17,19 @@ import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
   styleUrl: './marketplace.component.scss'
 })
 export class MarketplaceComponent implements OnInit {
+  error: string | null = null;
   loading: boolean = true;
   producers: Producer[] = [];
   filteredProducers: Producer[] = [];
   searchTerm: string = '';
   searchSubject: Subject<string> = new Subject();
   filterSubject: Subject<void> = new Subject();
+  locationSubject: Subject<void> = new Subject();
   sortOption: 'priceAsc' | 'priceDesc' | 'distanceAsc' | 'distanceDesc' | 'volAsc' | 'volDesc' = 'priceAsc';
   contractType: 'Direct Purchase' | 'PPA' = 'Direct Purchase';
   postalCode: string = '';
+  postalCodeLatitude: number = 0;
+  postalCodeLongitude: number = 0;
   minVolume!: number;
   maxVolume: number | null = null;
   minPrice!: number;
@@ -32,6 +38,7 @@ export class MarketplaceComponent implements OnInit {
   constructor(
     readonly _httpService: HttpService,
     readonly _authService: AuthService,
+    readonly _alertService: AlertService,
     readonly _router: Router,
   ) {
     this.searchSubject
@@ -50,6 +57,14 @@ export class MarketplaceComponent implements OnInit {
     .subscribe(() => {
       this.setProducers();
     });
+
+    this.locationSubject
+    .pipe(
+      debounceTime(500),
+    )
+    .subscribe(() => {
+      this.getProducersDistanceFromPostalCode();
+    });
   }
 
   ngOnInit(): void {
@@ -59,6 +74,7 @@ export class MarketplaceComponent implements OnInit {
         this.setProducers();
       },
       error: (error) => {
+        this._alertService.danger("Error fetching producers.");
         console.error(error);
       }
     });
@@ -66,7 +82,7 @@ export class MarketplaceComponent implements OnInit {
 
   setProducers() {
     this.loading = true;
-    
+
     this.filteredProducers = [...this.producers];
 
     // Contract type filter
@@ -96,12 +112,78 @@ export class MarketplaceComponent implements OnInit {
     this.filterSubject.next();
   }
 
+  onPostalCodeChange(postalCodeInput: any) {
+    if (postalCodeInput.valid || postalCodeInput.value === '') {
+      this.postalCode = postalCodeInput.value;
+      this.locationSubject.next();
+    }
+  }
+
+  getProducersDistanceFromPostalCode() {
+    this.loading = true;
+    
+    this._httpService.get(`${environment.apiUrl}/producer?postalcode=${this.postalCode}`).subscribe({
+      next: (response) => {
+        this.producers = response.producers;
+        this.setProducers();
+      },
+      error: (error) => {
+        this._alertService.danger("Error fetching producers.");
+        console.error(error);
+      }
+    });
+  }
+
+  getProducersDistanceFromPosition() {
+    this.loading = true;
+
+    this._httpService.get(`${environment.apiUrl}/producer?lat=${this.postalCodeLatitude}&lon=${this.postalCodeLongitude}`).subscribe({
+      next: (response) => {
+        this.producers = response.producers;
+        this.setProducers();
+      },
+      error: (error) => {
+        this._alertService.danger("Error fetching producers.");
+        console.error(error);
+      }
+    });
+  }
+
   onProducerClick(id: number) {
     this._router.navigate(['/map'], { queryParams: { id: id } });
   }
 
   onLocateClick() {
-    console.log('Find location clicked');
+    // Get user's location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          this.postalCodeLatitude = position.coords.latitude;
+          this.postalCodeLongitude = position.coords.longitude;
+          this.getProducersDistanceFromPosition();
+          this.setPostalCodeFromLocation();
+          this.error = null;
+        },
+        (err) => {
+          this.error = "Location access denied or unavailable.";
+          this._alertService.danger(this.error);
+          console.error(err);
+        }
+      );
+    } else {
+      this.error = "Geolocation is not supported by this browser.";
+      this._alertService.danger(this.error);
+    }
   }
 
+  setPostalCodeFromLocation() {
+    this._httpService.get(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${this.postalCodeLatitude}&lon=${this.postalCodeLongitude}`).subscribe({
+      next: (response) => {
+        this.postalCode = response.address.postcode;
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
 }
