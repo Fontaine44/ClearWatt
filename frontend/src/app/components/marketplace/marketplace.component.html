@@ -91,7 +91,7 @@
             placeholder="kg"
             [(ngModel)]="minVolume"
             (ngModelChange)="onFiltersChange()"
-            [class.is-invalid]="minVolume !== null && maxVolume !== null && minVolume > maxVolume"
+            [class.is-invalid]="isVolumeInvalid()"
           >
         </div>
       
@@ -104,11 +104,11 @@
             placeholder="kg"
             [(ngModel)]="maxVolume"
             (ngModelChange)="onFiltersChange()"
-            [class.is-invalid]="minVolume !== null && maxVolume !== null && minVolume > maxVolume"
+            [class.is-invalid]="isVolumeInvalid()"
           >
         </div>
         
-        <div *ngIf="minVolume !== null && maxVolume !== null && minVolume > maxVolume" class="text-danger">
+        <div *ngIf="isVolumeInvalid()" class="text-danger">
           <small>Minimum volume must be less than maximum volume.</small>
         </div>
       </div>
@@ -125,7 +125,7 @@
             placeholder="years"
             [(ngModel)]="minContract"
             (ngModelChange)="onFiltersChange()"
-            [class.is-invalid]="minContract !== null && maxContract !== null && minContract > maxContract"
+            [class.is-invalid]="isContractInvalid()"
           >
         </div>
       
@@ -138,11 +138,11 @@
             placeholder="years"
             [(ngModel)]="maxContract"
             (ngModelChange)="onFiltersChange()"
-            [class.is-invalid]="minContract !== null && maxContract !== null && minContract > maxContract"
+            [class.is-invalid]="isContractInvalid()"
           >
         </div>
         
-        <div *ngIf="minContract != null && maxContract != null && minContract > maxContract" class="text-danger">
+        <div *ngIf="isContractInvalid()" class="text-danger">
           <small>Minimum contract duration must be less than the maximum.</small>
         </div>
       </div>

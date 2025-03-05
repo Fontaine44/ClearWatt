@@ -96,26 +96,26 @@ export class MarketplaceComponent implements OnInit {
 
     // Volume filter
     if (this.contractType === 'Direct Purchase') {
-      if (this.minVolume) {
+      if (this.minVolume !== undefined) {
         this.filteredProducers = this.filteredProducers.filter(producer => producer.available_kg >= this.minVolume);
       }
-      if (this.maxVolume) {
+      if (this.maxVolume !== undefined) {
         this.filteredProducers = this.filteredProducers.filter(producer => producer.available_kg <= this.maxVolume);
       }
     }
 
     // Contract length filter
     if (this.contractType === 'PPA') {
-      if (this.minContract) {
+      if (this.minContract !== undefined) {
         this.filteredProducers = this.filteredProducers.filter(producer => producer.contract_duration >= this.minContract);
       }
-      if (this.maxContract) {
+      if (this.maxContract !== undefined) {
         this.filteredProducers = this.filteredProducers.filter(producer => producer.contract_duration <= this.maxContract);
       }
     }
 
     // Price filter
-    if (this.maxPrice) {
+    if (this.maxPrice !== undefined) {
       this.filteredProducers = this.filteredProducers.filter(producer => producer.dollars_per_kg <= this.maxPrice);
     }
 
@@ -144,12 +144,12 @@ export class MarketplaceComponent implements OnInit {
 
   performSearch(searchTerm: string) {
     if (searchTerm === '') {
-      this.filteredProducers = [...this.producers];
+      this.setProducers();
     } else {
       // Filter producers by name (case insensitive) and split by spaces
       const searchTermLower = searchTerm.toLowerCase();
       const searchTerms = searchTermLower.split(' ');
-      this.filteredProducers = this.producers.filter(producer => 
+      this.filteredProducers = this.filteredProducers.filter(producer => 
         searchTerms.some(term => producer.name.toLowerCase().includes(term))
       );
     }
@@ -238,5 +238,13 @@ export class MarketplaceComponent implements OnInit {
 
   getMaxPrice(): number {
     return Math.max(...this.producers.map(producer => producer.dollars_per_kg));
+  }
+
+  isVolumeInvalid(): boolean {
+    return this.minVolume !== undefined && this.maxVolume !== undefined && this.minVolume > this.maxVolume;
+  }
+
+  isContractInvalid(): boolean {
+    return this.minContract !== undefined && this.maxContract !== undefined && this.minContract > this.maxContract;
   }
 }
