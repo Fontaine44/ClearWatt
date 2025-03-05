@@ -37,8 +37,8 @@ export class MapComponent implements OnInit {
               alt: producer.name,
               icon: L.icon({
                 iconUrl: producer.logo_url,
-                iconSize: [36, 36],
-                iconAnchor: [18, 0],
+                iconSize: [48, 48],
+                iconAnchor: [24, 0],
               })
             }
           );
@@ -48,9 +48,10 @@ export class MapComponent implements OnInit {
           return L.popup({
     
             className: 'map__popup',
-            content: `<div class="poppins-bold fs-6">${producer.name}</div>
-              <div class="poppins-medium my-1">${producer.description}</div>
-              <a class="poppins-medium" href="google.com" target="_blank">Website</a>`
+            content: `<div class="poppins-bold fs-6 mb-2">${producer.name}</div>
+              <div class="poppins-medium mb-2">${producer.description}</div>
+              <div class="poppins-light mb-2">${producer.dollars_per_kg} kg/$</div>
+              <a class="poppins-medium" href="" target="_blank">Website</a>`
           });
         });
       },
@@ -76,16 +77,6 @@ export class MapComponent implements OnInit {
     });
 
     tiles.addTo(this.map);
-
-    const icons = {
-      iconUrl: 'marker.png',
-      iconRetinaUrl: 'marker.png',
-      iconSize: [36, 36],
-      iconAnchor: [18, 36],
-      shadowSize: [0, 0],
-      imagePath: './'
-    }
-    L.Icon.Default.mergeOptions(icons);
 
     for (let i = 0; i < this.markers.length; i++) {
       const marker = this.markers[i];

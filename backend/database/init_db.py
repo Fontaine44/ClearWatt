@@ -2,126 +2,108 @@ from database.model import db, Producer
 
 producers = [
     Producer(
-        name="HydroGreen",
-        description="Description for Montreal Producer 1",
-        postal_code="H1A 0A1",
-        latitude=45.7119,
-        longitude=-73.5673,
-        contract_type="PPA",
-        contract_duration=12,
-        dollars_per_kg=10.0,
-        available_kg=1000,
-        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1740541092/marker_egpvvm.png"
-    ),
-    Producer(
-        name="Hydrogen Now",
-        description="Description for Montreal Producer 2",
-        postal_code="H1A 0A2",
-        latitude=45.5097,
-        longitude=-73.5363,
-        contract_type="Direct Purchase",
-        contract_duration=24,
-        dollars_per_kg=12.0,
-        available_kg=2000,
-        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1740541092/marker_egpvvm.png"
-    ),
-    Producer(
-        name="Clean Power",
-        description="Description for Montreal Producer 3",
-        postal_code="H1A 0A3",
-        latitude=45.4127,
-        longitude=-73.3876,
-        contract_type="PPA",
-        contract_duration=36,
-        dollars_per_kg=14.0,
+        name="Clean Energy",
+        description="Clean Energy specializes in generating clean hydrogen using renewable energy sources. Their hydrogen is designed to meet the energy needs of both industrial and residential customers.",
+        latitude=45.4384,
+        longitude=-71.9009,
+        contract_duration=6,
+        dollars_per_kg=15.5,
         available_kg=3000,
-        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1740541092/marker_egpvvm.png"
+        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1741148584/logo16_ey50fh.png"
     ),
     Producer(
-        name="GreenGaz",
-        description="Description for Montreal Producer 4",
-        postal_code="H1A 0A4",
-        latitude=45.5728,
-        longitude=-73.5630,
-        contract_type="PPA",
-        contract_duration=48,
-        dollars_per_kg=16.0,
-        available_kg=3500,
-        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1740541092/marker_egpvvm.png"
+        name="GreenH2 Quebec",
+        description="GreenH2 Quebec focuses on producing clean hydrogen from wind energy, providing sustainable fuel for the transport sector.",
+        latitude=46.8041,
+        longitude=-71.2988,
+        dollars_per_kg=13.0,
+        available_kg=2500,
+        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1741148545/logo10_ly8ysp.webp"
     ),
     Producer(
-        name="Future Energy",
-        description="Description for Montreal Producer 5",
-        postal_code="H1A 0A5",
-        latitude=45.5101,
-        longitude=-73.7605,
-        contract_type="Direct Purchase",
-        contract_duration=60,
-        dollars_per_kg=18.0,
-        available_kg=15000,
-        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1740541092/marker_egpvvm.png"
-    ),
-    Producer(
-        name="EcoPower",
-        description="Description for Montreal Producer 6",
-        postal_code="H1A 0A6",
-        latitude=45.4800,
-        longitude=-73.4850,
-        contract_type="Direct Purchase",
-        contract_duration=72,
-        dollars_per_kg=20.0,
-        available_kg=2200,
-        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1740541092/marker_egpvvm.png"
-    ),
-    Producer(
-        name="Renewable Source",
-        description="Description for Montreal Producer 7",
-        postal_code="H1A 0A7",
-        latitude=45.6100,
-        longitude=-73.6300,
-        contract_type="PPA",
-        contract_duration=84,
-        dollars_per_kg=22.0,
+        name="GénieHydro",
+        description="GénieHydro produces hydrogen from hydroelectricity, offering clean energy solutions to industries looking to reduce their carbon footprint. Their hydrogen is used in a variety of applications, including fuel cells and energy storage.",
+        latitude=46.2625,
+        longitude=-72.944749,
+        contract_duration=5,
+        dollars_per_kg=14.0,
         available_kg=5000,
-        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1740541092/marker_egpvvm.png"
+        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1741148543/logo8_qvkuax.jpg"
     ),
     Producer(
-        name="Pure Energy",
-        description="Description for Montreal Producer 8",
-        postal_code="H1A 0A8",
-        latitude=45.5430,
-        longitude=-73.5970,
-        contract_type="PPA",
-        contract_duration=96,
-        dollars_per_kg=24.0,
-        available_kg=10750,
-        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1740541092/marker_egpvvm.png"
+        name="H2-Mtl",
+        description="H2-Mtl specialized in the distributon of clean hydrogen produced from renewable energy sources. Their hydrogen is used in a variety of applications, including transportation and energy storage.",
+        latitude=45.6366,
+        longitude=-73.5195,
+        contract_duration=9,
+        dollars_per_kg=16.0,
+        available_kg=2200,
+        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1741148539/logo2_e3ikzs.png"
     ),
     Producer(
-        name="GreenTech",
-        description="Description for Montreal Producer 9",
-        postal_code="H1A 0A9",
-        latitude=45.5921,
-        longitude=-73.5270,
-        contract_type="Direct Purchase",
-        contract_duration=108,
-        dollars_per_kg=26.0,
-        available_kg=3750,
-        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1740541092/marker_egpvvm.png"
+        name="Hydro Energy Solutions",
+        description="Hydro Energy Solutions specializes in producing hydrogen from hydropower and offers competitive rates for clean energy solutions.",
+        latitude=45.3265,
+        longitude=-73.2942,
+        contract_duration=2,
+        dollars_per_kg=19.5,
+        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1741148541/logo6_rnkqnj.png"
     ),
     Producer(
-        name="Sustainable Power",
-        description="Description for Montreal Producer 10",
-        postal_code="H1A 0B0",
-        latitude=45.5818,
-        longitude=-73.5859,
-        contract_type="Direct Purchase",
-        contract_duration=120,
-        dollars_per_kg=28.0,
-        available_kg=8000,
-        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1740541092/marker_egpvvm.png"
+        name="H2Revolution",
+        description="H2Revolution is committed to leading the charge towards a green economy by producing hydrogen from Quebec's vast wind energy resources.",
+        latitude=45.3448,
+        longitude=-73.6818,
+        contract_duration=4,
+        dollars_per_kg=14.5,
+        available_kg=3500,
+        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1741148537/logo1_fwae6n.png"
+    ),
+    Producer(
+        name="EcoHydrogen Québec",
+        description="EcoHydrogen Québec produces clean hydrogen, and creates innovative solutions for businesses and individuals who want to lower their environmental impact.",
+        latitude=45.4240,
+        longitude=-73.9679,
+        contract_duration=1,
+        dollars_per_kg=25.0,
+        available_kg=1200,
+        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1741148540/logo4_u4sgeo.png"
+    ),
+    Producer(
+        name="Nikola",
+        description="Nikola is dedicated to delivering affordable, clean hydrogen to Quebec's manufacturing sector through a combination of renewable energy sources.",
+        latitude=45.4432,
+        longitude=-73.6203,
+        contract_duration=7,
+        dollars_per_kg=13.5,
+        available_kg=4000,
+        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1741148551/logo15_fsj5h6.png"
+    ),
+    Producer(
+        name="HydroGreen",
+        description="HydroGreen utilizes revolutionnary methods to generate clean hydrogen, serving a wide range of commercial and industrial clients.",
+        latitude=45.7864,
+        longitude=-74.0326,
+        contract_duration=3,
+        dollars_per_kg=14.8,
+        available_kg=1900,
+        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1741148547/logo12_tiwqh5.png"
+    ),
+    Producer(
+        name="Aurora Hydrogen",
+        description="Aurora Hydrogen focuses on generating clean hydrogen and exports it all around Canada. They provide an eco-friendly solution for the future of transportation.",
+        latitude=45.7517,
+        longitude=-73.6341,
+        contract_duration=8,
+        dollars_per_kg=12.0,
+        available_kg=2700,
+        logo_url="https://res.cloudinary.com/dodu3btfh/image/upload/v1741148536/logo19_pojeeg.png"
     )
+
 ]
+
+# logo_urls = [
+
 
 def init_db(app):
     with app.app_context():

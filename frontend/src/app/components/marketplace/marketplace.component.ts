@@ -88,7 +88,11 @@ export class MarketplaceComponent implements OnInit {
     this.filteredProducers = [...this.producers];
 
     // Contract type filter
-    this.filteredProducers = this.filteredProducers.filter(producer => producer.contract_type === this.contractType);
+    if (this.contractType === 'PPA') {
+      this.filteredProducers = this.filteredProducers.filter(producer => producer.contract_duration);
+    } else {
+      this.filteredProducers = this.filteredProducers.filter(producer => producer.available_kg);
+    }
 
     // Volume filter
     if (this.contractType === 'Direct Purchase') {
@@ -168,6 +172,7 @@ export class MarketplaceComponent implements OnInit {
     this._httpService.get(`${environment.apiUrl}/producer?postalcode=${this.postalCode}`).subscribe({
       next: (response) => {
         this.producers = response.producers;
+        this.sortOption = 'distanceAsc';
         this.setProducers();
       },
       error: (error) => {
@@ -183,6 +188,7 @@ export class MarketplaceComponent implements OnInit {
     this._httpService.get(`${environment.apiUrl}/producer?lat=${this.postalCodeLatitude}&lon=${this.postalCodeLongitude}`).subscribe({
       next: (response) => {
         this.producers = response.producers;
+        this.sortOption = 'distanceAsc';
         this.setProducers();
       },
       error: (error) => {

@@ -30,4 +30,10 @@
     #map {
         height: 100%;
     }
+
+    ::ng-deep .leaflet-marker-icon {
+        background-color: #FFF;
+        border-radius: 50%;
+        border: 3px solid #000;
+    }
 }
