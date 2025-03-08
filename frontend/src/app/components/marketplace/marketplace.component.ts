@@ -30,11 +30,11 @@ export class MarketplaceComponent implements OnInit {
   postalCode: string = '';
   postalCodeLatitude: number = 0;
   postalCodeLongitude: number = 0;
-  minVolume!: number;
-  maxVolume!: number;
-  minContract!: number;
-  maxContract!: number;
-  maxPrice!: number;
+  minVolume: number | null = null;
+  maxVolume: number | null = null;
+  minContract: number | null = null;
+  maxContract: number | null = null;
+  maxPrice?: number;
 
   constructor(
     readonly _httpService: HttpService,
@@ -96,27 +96,23 @@ export class MarketplaceComponent implements OnInit {
 
     // Volume filter
     if (this.contractType === 'Direct Purchase') {
-      if (this.minVolume !== undefined) {
-        this.filteredProducers = this.filteredProducers.filter(producer => producer.available_kg >= this.minVolume);
-      }
-      if (this.maxVolume !== undefined) {
-        this.filteredProducers = this.filteredProducers.filter(producer => producer.available_kg <= this.maxVolume);
-      }
+      this.filteredProducers = this.filteredProducers.filter(producer => 
+        producer.available_kg >= (this.minVolume ?? Number.NEGATIVE_INFINITY) &&
+        producer.available_kg <= (this.maxVolume ?? Number.POSITIVE_INFINITY)
+      );    
     }
 
     // Contract length filter
     if (this.contractType === 'PPA') {
-      if (this.minContract !== undefined) {
-        this.filteredProducers = this.filteredProducers.filter(producer => producer.contract_duration >= this.minContract);
-      }
-      if (this.maxContract !== undefined) {
-        this.filteredProducers = this.filteredProducers.filter(producer => producer.contract_duration <= this.maxContract);
-      }
+      this.filteredProducers = this.filteredProducers.filter(producer => 
+        producer.contract_duration >= (this.minContract ?? Number.NEGATIVE_INFINITY) &&
+        producer.contract_duration <= (this.maxContract ?? Number.POSITIVE_INFINITY)
+      );
     }
 
     // Price filter
-    if (this.maxPrice !== undefined) {
-      this.filteredProducers = this.filteredProducers.filter(producer => producer.dollars_per_kg <= this.maxPrice);
+    if (this.maxPrice) {
+      this.filteredProducers = this.filteredProducers.filter(producer => this.maxPrice && producer.dollars_per_kg <= this.maxPrice);
     }
 
     // Sort producers
@@ -157,6 +153,14 @@ export class MarketplaceComponent implements OnInit {
 
   onFiltersChange() {
     this.filterSubject.next();
+  }
+
+  onContractTypeChange() {
+    this.minVolume = null;
+    this.maxVolume = null;
+    this.minContract = null;
+    this.maxContract = null;
+    this.setProducers();
   }
 
   onPostalCodeChange(postalCodeInput: any) {
@@ -241,10 +245,10 @@ export class MarketplaceComponent implements OnInit {
   }
 
   isVolumeInvalid(): boolean {
-    return this.minVolume !== undefined && this.maxVolume !== undefined && this.minVolume > this.maxVolume;
+    return !!(this.minVolume && this.maxVolume && this.minVolume > this.maxVolume);
   }
 
   isContractInvalid(): boolean {
-    return this.minContract !== undefined && this.maxContract !== undefined && this.minContract > this.maxContract;
+    return !!(this.minContract && this.maxContract && this.minContract > this.maxContract);
   }
 }

@@ -10,6 +10,7 @@
         class="form-control"
         placeholder="Search producer..."
         maxlength="50"
+        name="searchInput"
         [(ngModel)]="searchTerm"
         (ngModelChange)="onSearchChange($event)"
       />
@@ -30,11 +31,11 @@
   <div class="marketplace__producers">
     <div class="marketplace__filters">
       <div class="mb-4">
-        <label for="contractTypeInput" class="form-label">Contract Type:</label>
+        <div class="form-label">Contract Type:</div>
       
         <div class="form-check">
           <input class="form-check-input" type="radio" name="contractType" id="directPurchaseRadio"
-            [(ngModel)]="contractType" (change)="setProducers()" value="Direct Purchase">
+            [(ngModel)]="contractType" (change)="onContractTypeChange()" value="Direct Purchase">
              
           <label class="form-check-label poppins-light" for="directPurchaseRadio">
             Direct Purchase
@@ -43,7 +44,7 @@
       
         <div class="form-check">
           <input class="form-check-input" type="radio" name="contractType" id="PPARadio"
-            [(ngModel)]="contractType" (change)="setProducers()" value="PPA">
+            [(ngModel)]="contractType" (change)="onContractTypeChange()" value="PPA">
 
           <label class="form-check-label poppins-light" for="PPARadio">
             PPA
@@ -80,7 +81,7 @@
       </div>
 
       <div *ngIf="contractType == 'Direct Purchase'" class="mb-4">
-        <label class="form-label">Volume:</label>
+        <div class="form-label">Volume:</div>
         
         <div class="input-group mb-2">
           <span class="input-group-text w-25">Min.</span>
@@ -114,7 +115,7 @@
       </div>
 
       <div *ngIf="contractType == 'PPA'" class="mb-4">
-        <label class="form-label">Contract Duration:</label>
+        <div class="form-label">Contract Duration:</div>
         
         <div class="input-group mb-2">
           <span class="input-group-text w-25">Min.</span>
