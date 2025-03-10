@@ -1,0 +1,17 @@
+services:
+- type: web
+  name: ClearWatt
+  runtime: static
+  repo: https://github.com/Fontaine44/ClearWatt
+  buildCommand: npm run build_prod
+  staticPublishPath: dist/clearwatt/browser
+  domains:
+  - clearwatt.ca
+  - www.clearwatt.ca
+  routes:
+  - type: rewrite
+    source: /*
+    destination: /index.html
+  autoDeploy: false
+  rootDir: frontend
+version: "1"

@@ -1,0 +1,13 @@
+services:
+- type: web
+  name: ClearWatt-API
+  runtime: python
+  repo: https://github.com/Fontaine44/ClearWatt
+  plan: free
+  region: oregon
+  buildCommand: pip install -r requirements.txt
+  startCommand: gunicorn "app:create_app()"
+  healthCheckPath: /
+  autoDeploy: false
+  rootDir: backend
+version: "1"
