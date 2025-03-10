@@ -102,8 +102,6 @@ producers = [
 
 ]
 
-# logo_urls = [
-
 
 def init_db(app):
     with app.app_context():

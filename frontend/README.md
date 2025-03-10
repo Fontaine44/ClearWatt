@@ -1,27 +1,49 @@
-# ClearWatt frontends
+# ClearWatt Frontend  
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.6.
+## Overview  
+This is the frontend for ClearWatt, built using Angular. It utilizes a mix of native SCSS and Bootstrap for styling.  
 
-## Development server
+## Prerequisites  
+Ensure you have the following installed:  
+- [Node.js with NPM](https://nodejs.org/) (Latest LTS recommended)  
+- [Angular CLI](https://angular.io/cli)  
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Installation  
 
-## Code scaffolding
+1. Move to the `frontend` folder:
+   ```sh
+   cd frontend
+   ```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. Install the packages:
+    ```sh
+    npm install
+    ```
 
-## Build
+## Running the Application
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run the development application with hot-reload:  
+```sh
+npm start
+```
 
-## Running unit tests
+## Building the Application
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Development Build
 
-## Running end-to-end tests
+Build the application for development:  
+```sh
+ng build
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Production Build
 
-## Further help
+Build the application for production:  
+```sh
+ng build --configuration production
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Styling
+- The project uses SCSS for styles (.scss files in components).
+- Bootstrap 5.3 is included for additional UI components and responsiveness.
+- Modify global styles in `src/styles.scss` or `src/custom.scss`.
